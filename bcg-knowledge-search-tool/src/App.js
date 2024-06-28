@@ -46,7 +46,7 @@ function App() {
       }
     }, 1000);
   };
-
+  // We will only need to mainly change this function to the FlaskAPI call to make this more than a POC
   const simulateStreamingText = () => {
     const llmResults = [
       {
