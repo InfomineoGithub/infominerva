@@ -9,43 +9,35 @@ function App() {
   const [streamingIndex, setStreamingIndex] = useState(0);
   const [streamingText, setStreamingText] = useState(['', '']);
 
-  const simulateSearch = () => {
+  const simulateSearch = async () => {
     setSearchState('searching');
     setLlmState('idle');
     setResults([]);
     setStreamingIndex(0);
     setStreamingText(['', '']);
     
-    setTimeout(() => {
-      if (searchQuery.toLowerCase() === 'automotive') {
+    try {
+      const response = await fetch(`http://localhost:8000/search?query=${encodeURIComponent(searchQuery)}`);
+      const data = await response.json();
+
+      if (data.results && data.results.length > 0) {
         setSearchState('found');
-        setResults([
-          {
-            title: 'OICA Global Sales Statistics',
-            description: 'Provides data on sale of cars, including both passengers and commercial vehicles',
-            years: 'From 2019 to 2023',
-            source: 'OICA Global Sales Statistics',
-            link: 'https://www.oica.net/category/sales-statistics/'
-          },
-          {
-            title: 'OICA Global Production Statistics',
-            description: 'Provides data on production of cars, including both passengers and commercial vehicles',
-            years: 'From 1999 to 2023',
-            source: 'OICA Global Production Statistics',
-            link: 'https://www.oica.net/production-statistics/'
-          }
-        ]);
-      } else if (searchQuery.toLowerCase() === 'ai') {
+        setResults(data.results);
+      } else {
         setSearchState('not found');
+        // If no results found, simulate LLM response
         setTimeout(() => {
           setLlmState('generating');
           simulateStreamingText();
         }, 1000);
-      } else {
-        setSearchState('not found');
       }
-    }, 1000);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      setSearchState('not found');
+    }
   };
+
+
   // We will only need to mainly change this function to the FlaskAPI call to make this more than a POC
   const simulateStreamingText = () => {
     const llmResults = [
