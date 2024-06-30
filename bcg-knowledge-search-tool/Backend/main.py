@@ -16,7 +16,6 @@ app.add_middleware(
 # Load the database
 df = pd.read_csv("Database.csv")
 
-
 @app.get("/search")
 async def search(query: str):
     # Search for the query in the 'Tags' column
