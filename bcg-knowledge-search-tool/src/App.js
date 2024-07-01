@@ -38,12 +38,12 @@ function App() {
   };
 
 
-  // We will only need to mainly change this function to the FlaskAPI call to make this more than a POC
+  // TO CHANGE later with API CALL TO BACKEND ASWELL
   const simulateStreamingText = () => {
     const llmResults = [
       {
-        title: 'AI Overview',
-        description: 'A comprehensive introduction to Artificial Intelligence and its applications',
+        title: 'AI Placeholder result',
+        description: 'A comprehensive placeholder to Artificial Intelligence and its applications',
         years: '2020-2024',
         source: 'LLM Generated',
         link: '#'
