@@ -1,20 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { Search, User, Check, Loader, X } from 'lucide-react';
+import React, { useState } from 'react';
+import { Search, User, Check, Loader, X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchState, setSearchState] = useState('idle');
-  const [llmState, setLlmState] = useState('idle');
   const [results, setResults] = useState([]);
-  const [streamingIndex, setStreamingIndex] = useState(0);
-  const [streamingText, setStreamingText] = useState(['', '']);
+  const [currentPage, setCurrentPage] = useState(1);
+  const resultsPerPage = 5; // Change this to 5 later
 
   const simulateSearch = async () => {
     setSearchState('searching');
-    setLlmState('idle');
     setResults([]);
-    setStreamingIndex(0);
-    setStreamingText(['', '']);
     
     try {
       const response = await fetch(`http://localhost:8000/search?query=${encodeURIComponent(searchQuery)}`);
@@ -25,11 +21,6 @@ function App() {
         setResults(data.results);
       } else {
         setSearchState('not found');
-        // If no results found, simulate LLM response
-        setTimeout(() => {
-          setLlmState('generating');
-          simulateStreamingText();
-        }, 1000);
       }
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -37,8 +28,12 @@ function App() {
     }
   };
 
+  // Commented out LLM-related code
+  /*
+  const [llmState, setLlmState] = useState('idle');
+  const [streamingIndex, setStreamingIndex] = useState(0);
+  const [streamingText, setStreamingText] = useState(['', '']);
 
-  // TO CHANGE later with API CALL TO BACKEND ASWELL
   const simulateStreamingText = () => {
     const llmResults = [
       {
@@ -84,8 +79,15 @@ function App() {
       }
     }, 30);
   };
+  */
+  const indexOfLastResult = currentPage * resultsPerPage;
+  const indexOfFirstResult = indexOfLastResult - resultsPerPage;
+  const currentResults = results.slice(indexOfFirstResult, indexOfLastResult);
+  const totalPages = Math.ceil(results.length / resultsPerPage);
 
-  return (
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+return (
     <div className="min-h-screen bg-gray-100 p-8">
       <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-md p-6">
         <header className="flex justify-between items-center mb-6">
@@ -127,59 +129,47 @@ function App() {
               )}
               <span className="text-gray-700">
                 {searchState === 'searching' ? 'Searching Knowledge database...' : 
-                 searchState === 'found' ? 'Results found in database' :
-                 'Results not found in database'}
+                 searchState === 'found' ? `Found ${results.length} results` :
+                 'Results not found, LLM feature coming soon'}
               </span>
             </div>
-            {llmState !== 'idle' && (
-              <div className="flex items-center">
-                {llmState === 'generating' ? (
-                  <Loader className="h-5 w-5 text-sky-500 animate-spin mr-2" />
-                ) : (
-                  <Check className="h-5 w-5 text-green-500 mr-2" />
-                )}
-                <span className="text-gray-700">
-                  {llmState === 'generating' ? 'Generating response with LLM...' : 'LLM response generated'}
-                </span>
-              </div>
-            )}
           </div>
         )}
 
         <div className="space-y-4">
-          {(llmState !== 'idle' ? streamingText : results).map((result, index) => (
+          {currentResults.map((result, index) => (
             <div key={index} className="bg-gray-50 p-4 rounded-lg border border-gray-200">
-              {llmState !== 'idle' ? (
-                <div>
-                  {result.split('|').map((part, i) => {
-                    if (i === 0) return <h2 key={i} className="text-xl font-semibold text-sky-700 mb-2">{part}</h2>;
-                    if (i === 1) return <p key={i} className="text-gray-600 mb-2">{part}</p>;
-                    if (i === 2) return <p key={i} className="text-sm text-gray-500 mb-2">Years covered: {part}</p>;
-                    return null;
-                  })}
-                </div>
-              ) : (
-                <>
-                  <h2 className="text-xl font-semibold text-sky-700 mb-2">{result.title}</h2>
-                  <p className="text-gray-600 mb-2">{result.description}</p>
-                  <p className="text-sm text-gray-500 mb-2">Years covered: {result.years}</p>
-                  <a href={result.link} className="text-sky-600 hover:underline" target="_blank" rel="noopener noreferrer">
-                    {result.source}
-                  </a>
-                </>
-              )}
-              {llmState === 'done' && index < streamingIndex && (
-                <div className="mt-2">
-                  <p className="text-sm text-gray-700">Add to Knowledge Database?</p>
-                  <div className="mt-1">
-                    <button className="bg-green-500 text-white px-3 py-1 rounded-md mr-2 hover:bg-green-600">Yes</button>
-                    <button className="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600">No</button>
-                  </div>
-                </div>
-              )}
+              <h2 className="text-xl font-semibold text-sky-700 mb-2">{result.title}</h2>
+              <p className="text-gray-600 mb-2">{result.description}</p>
+              <p className="text-sm text-gray-500 mb-2">Years covered: {result.years}</p>
+              <a href={result.link} className="text-sky-600 hover:underline" target="_blank" rel="noopener noreferrer">
+                {result.source}
+              </a>
             </div>
           ))}
         </div>
+
+        {totalPages > 1 && (
+          <div className="flex justify-center items-center mt-6">
+            <button
+              onClick={() => paginate(currentPage - 1)}
+              disabled={currentPage === 1}
+              className="mr-2 px-3 py-1 bg-sky-500 text-white rounded-md disabled:bg-gray-300"
+            >
+              <ChevronLeft className="h-5 w-5" />
+            </button>
+            <span className="mx-2">
+              Page {currentPage} of {totalPages}
+            </span>
+            <button
+              onClick={() => paginate(currentPage + 1)}
+              disabled={currentPage === totalPages}
+              className="ml-2 px-3 py-1 bg-sky-500 text-white rounded-md disabled:bg-gray-300"
+            >
+              <ChevronRight className="h-5 w-5" />
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
