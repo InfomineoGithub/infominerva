@@ -6,7 +6,7 @@ function App() {
   const [searchState, setSearchState] = useState('idle');
   const [results, setResults] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const resultsPerPage = 5; // Change this to 5 later
+  const resultsPerPage = 5; // Can change to w/e later
 
   const simulateSearch = async () => {
     setSearchState('searching');
