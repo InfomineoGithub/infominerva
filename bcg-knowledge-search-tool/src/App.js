@@ -139,6 +139,10 @@ return (
         <div className="space-y-4">
           {currentResults.map((result, index) => (
             <div key={index} className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+              <div className="bg-yellow-100 text-yellow-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded mb-2">
+                 {result.words_found.join(', ')}
+              </div>
+
               <h2 className="text-xl font-semibold text-sky-700 mb-2">{result.title}</h2>
               <p className="text-gray-600 mb-2">{result.description}</p>
               <p className="text-sm text-gray-500 mb-2">Years covered: {result.years}</p>

@@ -17,48 +17,40 @@ def format_years(years):
 
 def advanced_search(df, query, search_columns):
     def process_query(q):
-        # Split by 'AND', preserving parentheses
-        and_terms = re.findall(r'\([^()]+\)|[^()]+', q)
-        and_terms = [term.strip() for term in and_terms if term.strip()]
-        
-        # Process each AND term
-        processed_terms = []
-        for term in and_terms:
-            if term.startswith('(') and term.endswith(')'):
-                processed_terms.append(term[1:-1])  # Remove parentheses
-            else:
-                # Split non-parentheses terms into individual words
-                processed_terms.extend(re.findall(r'\S+', term))
-        
-        return processed_terms, len(and_terms)
+        and_parts = re.split(r'\s+AND\s+', q)
+        terms = []
+        for part in and_parts:
+            terms.append(re.findall(r'\([^()]+\)|\S+', part))
+        return terms
 
     def search_term(term, text):
-        # For terms without spaces, search for whole word
         if ' ' not in term:
             return re.search(r'\b' + re.escape(term.lower()) + r'\b', str(text).lower()) is not None
-        # For terms with spaces (from parentheses), search as is
         else:
             return term.lower() in str(text).lower()
 
     def combine_columns(row):
         return ' '.join(str(row[col]) for col in search_columns if pd.notna(row[col]))
 
+    def format_word(word):
+        if word.startswith('(') and word.endswith(')'):
+            return word  # Keep parentheses for phrases
+        else:
+            return word.replace('(', '').replace(')', '')  # Remove parentheses from single words
+
     combined_text = df.apply(combine_columns, axis=1)
 
-    tokens, and_count = process_query(query)
+    and_terms = process_query(query)
 
-    # Initialize mask with True values
     mask = pd.Series([True] * len(df), index=df.index)
+    all_terms = [term for group in and_terms for term in group]
 
-    # Group tokens by AND terms
-    for i in range(0, len(tokens), and_count):
-        group = tokens[i:i+and_count]
+    for and_group in and_terms:
         group_mask = pd.Series([False] * len(df), index=df.index)
-        
-        for token in group:
+        for token in and_group:
+            token = token.strip('()')
             term_mask = combined_text.apply(lambda x: search_term(token, x))
             group_mask |= term_mask
-        
         mask &= group_mask
 
     results = df[mask]
@@ -66,15 +58,17 @@ def advanced_search(df, query, search_columns):
     if results.empty:
         return []
     
-    formatted_results = results.apply(
-        lambda row: {
+    formatted_results = []
+    for _, row in results.iterrows():
+        combined_row_text = combine_columns(row)
+        words_found = [format_word(term) for term in all_terms if search_term(term.strip('()'), combined_row_text)]
+        formatted_results.append({
             "title": row["Source name"],
             "description": row["Description"],
             "years": format_years(row["Years"]),
             "source": row["Source name"],
             "link": row["Link"],
-        },
-        axis=1,
-    ).tolist()
+            "words_found": words_found
+        })
 
     return formatted_results
