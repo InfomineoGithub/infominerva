@@ -7,6 +7,8 @@ function App() {
   const [results, setResults] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const resultsPerPage = 5; // Can change to w/e later
+  const [darkMode, setDarkMode] = useState(false);
+  const toggleDarkMode = () => setDarkMode(!darkMode);
 
   const simulateSearch = async () => {
     setSearchState('searching');
@@ -88,13 +90,18 @@ function App() {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
 return (
-    <div className="min-h-screen bg-gray-100 p-8">
-      <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-md p-6">
+    <div className={`min-h-screen ${darkMode ? 'bg-gray-900 text-white' : 'bg-gray-100'} p-8`}>
+      <div className={`max-w-4xl mx-auto ${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg shadow-md p-6`}>
+
+
         <header className="flex justify-between items-center mb-6">
-          <h1 className="text-2xl font-bold text-sky-600">BCG Knowledge Search Tool</h1>
+          <h1 className={`text-2xl font-bold ${darkMode ? 'text-sky-400' : 'text-sky-600'}`}>BCG Knowledge Search Tool</h1>
           <div className="flex items-center">
-            <User className="h-8 w-8 text-gray-500 mr-2" />
-            <span className="text-gray-700">Youssef Moutaouakkil</span>
+            <button onClick={toggleDarkMode} className="mr-4">
+          {darkMode ? '☀️' : '🌙'}
+            </button>
+            <User className={`h-8 w-8 ${darkMode ? 'text-gray-300' : 'text-gray-500'} mr-2`} />
+            <span className={darkMode ? 'text-gray-300' : 'text-gray-700'}>Youssef Moutaouakkil</span>
           </div>
         </header>
 
@@ -102,7 +109,7 @@ return (
           <div className="relative">
             <input
               type="text"
-              className="w-full p-4 pr-12 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-sky-500 focus:border-sky-500"
+              className={`w-full p-4 pr-12 ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-50 text-gray-900'} border ${darkMode ? 'border-gray-600' : 'border-gray-300'} rounded-lg focus:ring-sky-500 focus:border-sky-500`}
               placeholder="Search knowledge database..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -127,9 +134,9 @@ return (
               ) : (
                 <X className="h-5 w-5 text-red-500 mr-2" />
               )}
-              <span className="text-gray-700">
+              <span className={`text-gray-700 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                 {searchState === 'searching' ? 'Searching Knowledge database...' : 
-                 searchState === 'found' ? `Found ${results.length} results` :
+                 searchState === 'found' ? `Found ${results.length} results` : 
                  'Results not found, LLM feature coming soon'}
               </span>
             </div>
@@ -138,16 +145,17 @@ return (
 
         <div className="space-y-4">
           {currentResults.map((result, index) => (
-            <div key={index} className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+            <div key={index} className={`${darkMode ? 'bg-gray-700' : 'bg-gray-50'} p-4 rounded-lg border ${darkMode ? 'border-gray-600' : 'border-gray-200'}`}>
               <div className="bg-yellow-100 text-yellow-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded mb-2">
                  {result.words_found.join(', ')}
               </div>
 
-              <h2 className="text-xl font-semibold text-sky-700 mb-2">{result.title}</h2>
-              <p className="text-gray-600 mb-2">{result.description}</p>
-              <p className="text-sm text-gray-500 mb-2">Years covered: {result.years}</p>
-              <a href={result.link} className="text-sky-600 hover:underline" target="_blank" rel="noopener noreferrer">
+              <h2 className={`text-xl font-semibold ${darkMode ? 'text-sky-400' : 'text-sky-700'} mb-2`}>{result.title}</h2>
+              <p className={`${darkMode ? 'text-gray-300' : 'text-gray-600'} mb-2`}>{result.description}</p>
+              <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-500'} mb-2`}>Years covered: {result.years}</p>
+              <a href={result.link} className={`${darkMode ? 'text-sky-400' : 'text-sky-600'} hover:underline`} target="_blank" rel="noopener noreferrer">
                 {result.source}
+
               </a>
             </div>
           ))}
