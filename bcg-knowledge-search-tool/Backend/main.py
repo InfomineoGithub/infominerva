@@ -1,42 +1,29 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 import pandas as pd
+from search_utils import advanced_search
 
 app = FastAPI()
 
 # Enable CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # Allow React app to access the API
+    allow_origins=["*"],  # Allow React app to access the API
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+search_columns = ["Tags", "Sector/Area", "Sub-Sector", "Description", "Source name"]
 
 # Load the database
 df = pd.read_csv("Database.csv")
 
 @app.get("/search")
 async def search(query: str):
-    # Search for the query in the 'Tags' column
-    results = df[df["Tags"].str.contains(query, case=False, na=False)]
-
-    if results.empty:
-        return {"results": []}
-
-    # Format the results
-    formatted_results = results.apply(
-        lambda row: {
-            "title": row["Source name"],
-            "description": row["Description"],
-            "years": row["Years"],
-            "source": row["Source name"],
-            "link": row["Link"],
-        },
-        axis=1,
-    ).tolist()
-
-    return {"results": formatted_results}
+    results = advanced_search(df, query, search_columns)
+    return {"results": results}
+ 
 
 
 @app.get("/llm")
