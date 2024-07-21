@@ -20,11 +20,13 @@ search_columns = ["Tags", "Sector/Area", "Sub-Sector", "Description", "Source na
 df = pd.read_csv("Database.csv")
 
 @app.get("/search")
-async def search(query: str):
+async def search(query: str, sort_by: str = "relevance"):
     results = advanced_search(df, query, search_columns)
+    if sort_by == "relevance":
+        results.sort(key=lambda x: len(x['words_found']), reverse=True)
+    # You could add other sorting options here
     return {"results": results}
  
-
 
 @app.get("/llm")
 async def llm_search(query: str):
@@ -42,3 +44,4 @@ if __name__ == "__main__":
     import uvicorn
 
     uvicorn.run(app, host="0.0.0.0", port=8000)
+ 

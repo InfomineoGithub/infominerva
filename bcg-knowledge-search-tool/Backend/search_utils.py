@@ -71,4 +71,7 @@ def advanced_search(df, query, search_columns):
             "words_found": words_found
         })
 
+    # Sort the results based on the number of words found, in descending order
+    formatted_results.sort(key=lambda x: len(x['words_found']), reverse=True)
+
     return formatted_results
