@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Search, User, Check, Loader, X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Search, User, Check, Loader, X, ChevronLeft, ChevronRight, Sun, Moon } from 'lucide-react';
 import { signOut } from 'firebase/auth';
 import { auth } from '../firebase';
 
@@ -100,18 +100,28 @@ function SearchPage({ user }) {
 
 return (
     <div className={`min-h-screen ${darkMode ? 'bg-gray-900 text-white' : 'bg-gray-100'} p-8`}>
-      <div className={`max-w-4xl mx-auto ${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg shadow-md p-6`}>
+      <div className={`max-w-4xl mx-auto ${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg shadow-md p-6 transition-colors duration-300`}>
 
 
         <header className="flex justify-between items-center mb-6">
           <h1 className={`text-2xl font-bold ${darkMode ? 'text-sky-400' : 'text-sky-600'}`}>BCG Knowledge Search Tool</h1>
           <div className="flex items-center">
-            <button onClick={toggleDarkMode} className="mr-4">
-          {darkMode ? '☀️' : '🌙'}
+
+            <button 
+              onClick={toggleDarkMode} 
+              className={`mr-4 p-2 rounded-full shadow-md transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 ${
+                darkMode 
+                  ? 'bg-gray-700 text-yellow-300 hover:bg-gray-600 focus:ring-yellow-500' 
+                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300 focus:ring-gray-500'
+              }`}
+              aria-label={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
+            >
+              {darkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
             </button>
+
             <User className={`h-8 w-8 ${darkMode ? 'text-gray-300' : 'text-gray-500'} mr-2`} />
             <span className={darkMode ? 'text-gray-300' : 'text-gray-700'}>{user.displayName}</span>
-            <button onClick={handleSignOut} className="ml-4 text-red-500 hover:text-red-700">Sign Out</button>
+            <button onClick={handleSignOut} className="ml-4 px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition-colors duration-300">Sign Out</button>
           </div>
         </header>
 
