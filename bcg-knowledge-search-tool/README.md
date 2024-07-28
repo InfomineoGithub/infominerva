@@ -1,70 +1,57 @@
-# Getting Started with Create React App
+# BCG Knowledge Search Tool
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The app is a React app that allows users to search with keywords and filters online with login credentials. It uses an internal database sent by BCG internal team.
 
-## Available Scripts
+## Structure of the app
 
-In the project directory, you can run:
+The app is divided into the backend and the frontend : 
+- The backend is a **fastapi** app that uses the database sent by the BCG internal team. It's easy to add new endpoints such as LLM Agents, Modifying the database, etc.
+- The frontend is a **React app** that allows users to search with keywords and filters online with login credentials. The authentication is done with Firebase. It uses the backend to get the data.
 
-### `npm start`
+## Installation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Local Installation
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+To run the app locally (No docker), you need to activate the venv :
+```bash
+source venv/bin/activate
+```
+For windows, you need to run the command:
+```bash
+.\venv\Scripts\activate
+```
+Then, you can run the app with :
+```bash
+fastapi run main.py
+```
+or :
+```bash
+uvicorn main:app --reload
+```
 
-### `npm test`
+or you can install the requirements.txt file directly.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Once the API is running, you can run the frontend with :
+```bash
+cd bcg-knowledge-search-tool
+npm install
+npm start
+```
+However this will give you an address IP only accessible in local network. you can then run ngrok to get a proper domain name accessible from the internet : 
+```bash
+ngrok http 3000
+```
 
-### `npm run build`
+then you'd need to add it to firebase autohorized domains.
+this is lazy and mostly for development purpose, ideally you should use the docker image and have it running in the cloud.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Docker Installation
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+There is already a dockerfile in the root of the project. You can build the image with :
+```bash
+docker build -t bcg-knowledge-search-tool .
+```
+Then you can run the image with :
+```bash
+docker run -p 8000:8000 bcg-knowledge-search-tool
+```
