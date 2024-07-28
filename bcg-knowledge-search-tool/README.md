@@ -1,57 +1,83 @@
 # BCG Knowledge Search Tool
 
-The app is a React app that allows users to search with keywords and filters online with login credentials. It uses an internal database sent by BCG internal team.
+## Overview
 
-## Structure of the app
+The BCG Knowledge Search Tool is a powerful, web-based application designed to streamline access to BCG's internal knowledge base. It combines a robust backend API with a user-friendly frontend interface, providing authorized users with quick and efficient search capabilities across BCG's vast repository of information.
 
-The app is divided into the backend and the frontend : 
-- The backend is a **fastapi** app that uses the database sent by the BCG internal team. It's easy to add new endpoints such as LLM Agents, Modifying the database, etc.
-- The frontend is a **React app** that allows users to search with keywords and filters online with login credentials. The authentication is done with Firebase. It uses the backend to get the data.
+## Key Features
 
-## Installation
+- **Secure Authentication**: Utilizes Firebase for robust, email-domain restricted user authentication.
+- **Advanced Search**: Enables users to search using keywords and apply various filters for precise results.
+- **Responsive Design**: Ensures a seamless experience across desktop and mobile devices.
+- **Scalable Architecture**: Built with FastAPI and React for high performance and easy scalability.
 
-### Local Installation
+## Roadmap
 
-To run the app locally (No docker), you need to activate the venv :
-```bash
-source venv/bin/activate
-```
-For windows, you need to run the command:
-```bash
-.\venv\Scripts\activate
-```
-Then, you can run the app with :
-```bash
-fastapi run main.py
-```
-or :
-```bash
-uvicorn main:app --reload
-```
+### Short-term Goals
+- Deploy a build version of the application to GCP or internal servers after discussing with the team.
+- Implement more granular search filters (e.g., by category, column, etc.)
+- Add simple LLM answering capabilities
 
-or you can install the requirements.txt file directly.
+### Long-term Vision
+- Integration of LLM agents (Considering the team's needs, which is the LLM needs to read multiple webpages and summarize them/scrape/categorize them, this isthe way to go)
+- Add new route for the user to easily add more data to the database
 
-Once the API is running, you can run the frontend with :
-```bash
-cd bcg-knowledge-search-tool
-npm install
-npm start
-```
-However this will give you an address IP only accessible in local network. you can then run ngrok to get a proper domain name accessible from the internet : 
-```bash
-ngrok http 3000
-```
+## Technical Architecture
 
-then you'd need to add it to firebase autohorized domains.
-this is lazy and mostly for development purpose, ideally you should use the docker image and have it running in the cloud.
+### Backend
+- **Framework**: FastAPI
+- **Database**: Database.csv handed from BCG internal team
+- **Key Libraries**: Listed in `requirements.txt`
 
-### Docker Installation
+### Frontend
+- **Framework**: React
+- **Authentication**: Firebase
+- **State Management**: React Hooks
+- **Styling**: Tailwind CSS
 
-There is already a dockerfile in the root of the project. You can build the image with :
+## Installation and Setup
+
+### Prerequisites
+- Python 3.8+
+- Node.js 14+
+- Docker (for containerized deployment)
+
+### Local Development Setup
+
+1. **Backend Setup**:
+   ```bash
+   cd backend
+   python -m venv venv
+   source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+   pip install -r requirements.txt
+   uvicorn main:app --reload
+   ```
+
+2. **Frontend Setup**:
+   ```bash
+   cd frontend
+   npm install
+   npm start
+   ```
+
+3. **Development Domain Setup** (Optional):
+   ```bash
+   ngrok http 3000
+   ```
+   Add the ngrok-provided URL to Firebase authorized domains for testing.
+
+### Docker Deployment
+
+Build and run the Docker image:
 ```bash
 docker build -t bcg-knowledge-search-tool .
+docker run -p 8000:8000 -p 3000:3000 bcg-knowledge-search-tool
 ```
-Then you can run the image with :
-```bash
-docker run -p 8000:8000 bcg-knowledge-search-tool
-```
+
+## Usage Guide
+
+1. Access the application through the provided URL.
+2. Log in using your @infomineo.com email address.
+3. Use the search bar to enter keywords.
+4. Apply filters as needed to refine your search.
+5. Click on search results to view detailed information.
