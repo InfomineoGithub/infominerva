@@ -20,20 +20,36 @@ function SearchPage({ user }) {
     setResults([]);
     
     try {
-      const response = await fetch(`http://35.188.172.12:8000/search?query=${encodeURIComponent(searchQuery)}`);
-      const data = await response.json();
+        console.log('Sending request to:', `http://35.188.172.12:8000/search?query=${encodeURIComponent(searchQuery)}`);
+        const response = await fetch(`http://35.188.172.12:8000/search?query=${encodeURIComponent(searchQuery)}`);
+        console.log('Response status:', response.status);
+        console.log('Response headers:', response.headers);
+        
+        const text = await response.text();
+        console.log('Response text:', text);
+        
+        let data;
+        try {
+            data = JSON.parse(text);
+        } catch (e) {
+            console.error('Error parsing JSON:', e);
+            setSearchState('not found');
+            return;
+        }
+        
+        console.log('Parsed data:', data);
 
-      if (data.results && data.results.length > 0) {
-        setSearchState('found');
-        setResults(data.results);
-      } else {
-        setSearchState('not found');
-      }
+        if (data.results && data.results.length > 0) {
+            setSearchState('found');
+            setResults(data.results);
+        } else {
+            setSearchState('not found');
+        }
     } catch (error) {
-      console.error('Error fetching data:', error);
-      setSearchState('not found');
+        console.error('Error fetching data:', error);
+        setSearchState('not found');
     }
-  };
+    };
 
   const handleSignOut = () => {
     signOut(auth).catch((error) => {
