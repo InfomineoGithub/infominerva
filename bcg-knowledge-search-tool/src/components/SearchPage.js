@@ -20,7 +20,7 @@ function SearchPage({ user }) {
     setResults([]);
     
     try {
-      const response = await fetch(`http://localhost:8000/search?query=${encodeURIComponent(searchQuery)}`);
+      const response = await fetch(`http://34.30.130.111:8000/search?query=${encodeURIComponent(searchQuery)}`);
       const data = await response.json();
 
       if (data.results && data.results.length > 0) {
