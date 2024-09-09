@@ -2,6 +2,8 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 import pandas as pd
 from search_utils import advanced_search
+from Llm_utils import process_link
+
 
 app = FastAPI()
 
@@ -19,6 +21,10 @@ search_columns = ["Tags", "Sector/Area", "Sub-Sector", "Description", "Source na
 # Load the database
 df = pd.read_csv("Database.csv")
 
+def reload_database():
+    global df
+    df = pd.read_csv("Database.csv")
+
 @app.get("/search")
 async def search(query: str, sort_by: str = "relevance"):
     results = advanced_search(df, query, search_columns)
@@ -28,16 +34,29 @@ async def search(query: str, sort_by: str = "relevance"):
     return {"results": results}
  
 
+
+
 @app.get("/llm")
-async def llm_search(query: str):
-    # Placeholder for LLM functionality
-    return {"message": "LLM search not implemented yet"}
+async def llm_search(link: str):
+    result = process_link(df, link)
+    if "error" in result:
+        raise HTTPException(status_code=400, detail=result["error"])
+    return result
+
 
 
 @app.post("/add_data")
 async def add_data(data: dict):
-    # Placeholder for adding new data
-    return {"message": "Adding new data not implemented yet"}
+    global df
+    new_row = pd.DataFrame([data])
+    df = pd.concat([df, new_row], ignore_index=True)
+    df.to_csv("Database.csv", index=False)
+    reload_database()  # Reload the database after adding new data
+    return {"message": "Data added successfully"}
+
+@app.on_event("startup")
+async def startup_event():
+    reload_database()  # Ensure the database is loaded when the app starts
 
 
 if __name__ == "__main__":

@@ -1,23 +1,13 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+*.pyc
 
-# dependencies
-/node_modules
-/.pnp
-.pnp.js
+# venv is in root => Backend => venv so let's remove it :
+Backend/venv
 
-# testing
-/coverage
+# ignore __pycache__ folder
+Backend/__pycache__
 
-# production
-/build
 
-# misc
-.DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
 
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+# ignore build that is in root directly
+build
+node_modules

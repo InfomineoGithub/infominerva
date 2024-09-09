@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
-import { Search, User, Check, Loader, X, ChevronLeft, ChevronRight, Sun, Moon, HelpCircle } from 'lucide-react';
+import { Search, User, Check, Loader, X, ChevronLeft, ChevronRight, Sun, Moon, HelpCircle, PlusCircle } from 'lucide-react';
 import { signOut } from 'firebase/auth';
 import { auth } from '../firebase';
+import { Link } from 'react-router-dom';
 
 
-function SearchPage({ user }) {
+function SearchPage({ user, darkMode, toggleDarkMode }) {
     const [searchQuery, setSearchQuery] = useState('');
     const [searchState, setSearchState] = useState('idle');
     const [results, setResults] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const resultsPerPage = 5;
     const [showHelp, setShowHelp] = useState(true);
-    const [darkMode, setDarkMode] = useState(false);
-    const toggleDarkMode = () => setDarkMode(!darkMode);
+    //const [darkMode, setDarkMode] = useState(false);
+    //const toggleDarkMode = () => setDarkMode(!darkMode);
     // we can set Darkmode to default by making
 
   const simulateSearch = async () => {
@@ -20,8 +21,8 @@ function SearchPage({ user }) {
     setResults([]);
     
     try {
-        console.log('Sending request to:', `http://35.188.172.12:8000/search?query=${encodeURIComponent(searchQuery)}`);
-        const response = await fetch(`http://35.188.172.12:8000/search?query=${encodeURIComponent(searchQuery)}`);
+        console.log('Sending request to:', `http://localhost:8000/search?query=${encodeURIComponent(searchQuery)}`);
+        const response = await fetch(`http://localhost:8000/search?query=${encodeURIComponent(searchQuery)}`);
         console.log('Response status:', response.status);
         console.log('Response headers:', response.headers);
         
@@ -122,6 +123,12 @@ function SearchPage({ user }) {
             <header className="flex justify-between items-center mb-6">
                 <h1 className={`text-2xl font-bold ${darkMode ? 'text-sky-400' : 'text-sky-600'}`}>BCG Knowledge Search Tool</h1>
                 <div className="flex items-center">
+                <Link to="/add-source" className={`mr-4 flex items-center ${darkMode ? 'text-sky-400 hover:text-sky-300' : 'text-sky-600 hover:text-sky-700'}`}>
+                            <PlusCircle className="h-5 w-5 mr-2" />
+                            Add Source
+                        </Link>
+
+                    
                     <button 
                         onClick={toggleDarkMode} 
                         className={`mr-4 p-2 rounded-full shadow-md transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 ${
