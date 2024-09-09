@@ -34,7 +34,8 @@ const AddSourcePage = ({ darkMode }) => {
     const handleAIAssist = async () => {
         setLoading(true);
         try {
-            const response = await fetch(`http://localhost:8000/llm?link=${encodeURIComponent(link)}`);
+            const apiUrl = process.env.REACT_APP_URL;
+            const response = await fetch(`${apiUrl}/llm?link=${encodeURIComponent(link)}`);
             const data = await response.json();
             if (!response.ok) {
                 // Handle HTTP errors (including 400)
@@ -78,12 +79,13 @@ const AddSourcePage = ({ darkMode }) => {
     const confirmSubmit = async () => {
         setModalOpen(false);
         try {
-            const response = await fetch('http://localhost:8000/add_data', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
+            const apiUrl = process.env.REACT_APP_URL;
+            const response = await fetch(`${apiUrl}/add_data`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
             });
             const result = await response.json();
             showModal("Success", result.message);

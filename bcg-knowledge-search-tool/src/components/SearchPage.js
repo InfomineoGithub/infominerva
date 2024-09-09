@@ -12,20 +12,16 @@ function SearchPage({ user, darkMode, toggleDarkMode }) {
     const [currentPage, setCurrentPage] = useState(1);
     const resultsPerPage = 5;
     const [showHelp, setShowHelp] = useState(true);
-    //const [darkMode, setDarkMode] = useState(false);
-    //const toggleDarkMode = () => setDarkMode(!darkMode);
-    // we can set Darkmode to default by making
 
   const simulateSearch = async () => {
     setSearchState('searching');
     setResults([]);
     
     try {
-        console.log('Sending request to:', `http://localhost:8000/search?query=${encodeURIComponent(searchQuery)}`);
-        const response = await fetch(`http://localhost:8000/search?query=${encodeURIComponent(searchQuery)}`);
-        console.log('Response status:', response.status);
-        console.log('Response headers:', response.headers);
-        
+            const apiUrl = process.env.REACT_APP_URL;
+            console.log('Sending request to:', `${apiUrl}/search?query=${encodeURIComponent(searchQuery)}`);
+            const response = await fetch(`${apiUrl}/search?query=${encodeURIComponent(searchQuery)}`);
+
         const text = await response.text();
         console.log('Response text:', text);
         
@@ -248,8 +244,8 @@ function SearchPage({ user, darkMode, toggleDarkMode }) {
                             </ul>
                             <h4 className={`text-sm font-semibold mt-4 ${darkMode ? 'text-yellow-200' : 'text-yellow-800'}`}>Upcoming Features:</h4>
                             <ul className={`text-sm ${darkMode ? 'text-yellow-100' : 'text-yellow-800'}`}>
+                                <li>- Admin dashboard for validating data submissions</li>
                                 <li>- Search filters (by category, date, etc.)</li>
-                                <li>- LLM answering capabilities</li>
                                 <li>- User leaderboard</li>
                             </ul>
                         </div>
