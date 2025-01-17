@@ -1,0 +1,1652 @@
+[
+  {
+    "PA classification": "Aerospace & Defense",
+    "Sector/Area": "Aircraft Manufacturing",
+    "Sub-Sector": "Commercial Aircraft"
+  },
+  {
+    "PA classification": "Aerospace & Defense",
+    "Sector/Area": "Aircraft Manufacturing",
+    "Sub-Sector": "Defense Aircraft"
+  },
+  {
+    "PA classification": "Aerospace & Defense",
+    "Sector/Area": "Defense Technology",
+    "Sub-Sector": "Military Technology"
+  },
+  {
+    "PA classification": "Aerospace & Defense",
+    "Sector/Area": "Homeland Security",
+    "Sub-Sector": "Border Security"
+  },
+  {
+    "PA classification": "Aerospace & Defense",
+    "Sector/Area": "Homeland Security",
+    "Sub-Sector": "Cybersecurity for Defense"
+  },
+  {
+    "PA classification": "Aerospace & Defense",
+    "Sector/Area": "Other",
+    "Sub-Sector": ""
+  },
+  {
+    "PA classification": "Aerospace & Defense",
+    "Sector/Area": "Space Exploration",
+    "Sub-Sector": "Spacecraft"
+  },
+  {
+    "PA classification": "Agriculture",
+    "Sector/Area": "Agribusiness Services",
+    "Sub-Sector": "Farm Management"
+  },
+  {
+    "PA classification": "Agriculture",
+    "Sector/Area": "Agribusiness Services",
+    "Sub-Sector": "Seed Supply Chain"
+  },
+  {
+    "PA classification": "Agriculture",
+    "Sector/Area": "Agricultural Technology",
+    "Sub-Sector": "IoT in Agriculture"
+  },
+  {
+    "PA classification": "Agriculture",
+    "Sector/Area": "Agricultural Technology",
+    "Sub-Sector": "Precision Agriculture"
+  },
+  {
+    "PA classification": "Agriculture",
+    "Sector/Area": "Agricultural Technology",
+    "Sub-Sector": "Smart Farming"
+  },
+  {
+    "PA classification": "Agriculture",
+    "Sector/Area": "Crop Production",
+    "Sub-Sector": ""
+  },
+  {
+    "PA classification": "Agriculture",
+    "Sector/Area": "Fisheries and Aquaculture",
+    "Sub-Sector": "Fish Farming"
+  },
+  {
+    "PA classification": "Agriculture",
+    "Sector/Area": "Livestock and Animal Husbandry",
+    "Sub-Sector": "Aquaculture"
+  },
+  {
+    "PA classification": "Agriculture",
+    "Sector/Area": "Livestock and Animal Husbandry",
+    "Sub-Sector": "Dairy Farming"
+  },
+  {
+    "PA classification": "Agriculture",
+    "Sector/Area": "Livestock and Animal Husbandry",
+    "Sub-Sector": "Poultry Farming"
+  },
+  {
+    "PA classification": "Agriculture",
+    "Sector/Area": "Other",
+    "Sub-Sector": ""
+  },
+  {
+    "PA classification": "Climate & Sustainability",
+    "Sector/Area": "Carbon Capture and Storage",
+    "Sub-Sector": ""
+  },
+  {
+    "PA classification": "Climate & Sustainability",
+    "Sector/Area": "Circular Economy Waste & Recycling",
+    "Sub-Sector": ""
+  },
+  {
+    "PA classification": "Climate & Sustainability",
+    "Sector/Area": "Climate Accounting and Target Setting",
+    "Sub-Sector": ""
+  },
+  {
+    "PA classification": "Climate & Sustainability",
+    "Sector/Area": "Climate Policy",
+    "Sub-Sector": ""
+  },
+  {
+    "PA classification": "Climate & Sustainability",
+    "Sector/Area": "Climate Risk Adaptation & Resilience",
+    "Sub-Sector": ""
+  },
+  {
+    "PA classification": "Climate & Sustainability",
+    "Sector/Area": "Emissions Trading and Carbon Markets",
+    "Sub-Sector": "Carbon Credits"
+  },
+  {
+    "PA classification": "Climate & Sustainability",
+    "Sector/Area": "Environmental Services",
+    "Sub-Sector": "Environmental Consulting"
+  },
+  {
+    "PA classification": "Climate & Sustainability",
+    "Sector/Area": "Environmental Services",
+    "Sub-Sector": "Waste Management"
+  },
+  {
+    "PA classification": "Climate & Sustainability",
+    "Sector/Area": "Environmental Services",
+    "Sub-Sector": "Water Treatment"
+  },
+  {
+    "PA classification": "Climate & Sustainability",
+    "Sector/Area": "ESG Org & Governance and Operating Model",
+    "Sub-Sector": ""
+  },
+  {
+    "PA classification": "Climate & Sustainability",
+    "Sector/Area": "ESG Strategy & Reporting",
+    "Sub-Sector": ""
+  },
+  {
+    "PA classification": "Climate & Sustainability",
+    "Sector/Area": "ESG Valuation",
+    "Sub-Sector": ""
+  },
+  {
+    "PA classification": "Climate & Sustainability",
+    "Sector/Area": "Net Zero, Climate strategy",
+    "Sub-Sector": ""
+  },
+  {
+    "PA classification": "Climate & Sustainability",
+    "Sector/Area": "Other",
+    "Sub-Sector": ""
+  },
+  {
+    "PA classification": "Climate & Sustainability",
+    "Sector/Area": "Renewable Energy Technologies",
+    "Sub-Sector": ""
+  },
+  {
+    "PA classification": "Climate & Sustainability",
+    "Sector/Area": "Sustainable Agriculture",
+    "Sub-Sector": ""
+  },
+  {
+    "PA classification": "Consumer Goods & Retail",
+    "Sector/Area": "Apparel and Footwear",
+    "Sub-Sector": "Fashion & Apparel"
+  },
+  {
+    "PA classification": "Consumer Goods & Retail",
+    "Sector/Area": "Apparel and Footwear",
+    "Sub-Sector": "Fast Fashion"
+  },
+  {
+    "PA classification": "Consumer Goods & Retail",
+    "Sector/Area": "Apparel and Footwear",
+    "Sub-Sector": "Outdoor Apparel"
+  },
+  {
+    "PA classification": "Consumer Goods & Retail",
+    "Sector/Area": "Apparel and Footwear",
+    "Sub-Sector": "Sports Apparel"
+  },
+  {
+    "PA classification": "Consumer Goods & Retail",
+    "Sector/Area": "E-commerce",
+    "Sub-Sector": "Marketplaces"
+  },
+  {
+    "PA classification": "Consumer Goods & Retail",
+    "Sector/Area": "E-commerce",
+    "Sub-Sector": "Online Retail"
+  },
+  {
+    "PA classification": "Consumer Goods & Retail",
+    "Sector/Area": "Entertainment & Leisure",
+    "Sub-Sector": "Casinos"
+  },
+  {
+    "PA classification": "Consumer Goods & Retail",
+    "Sector/Area": "Entertainment & Leisure",
+    "Sub-Sector": "Gambling"
+  },
+  {
+    "PA classification": "Consumer Goods & Retail",
+    "Sector/Area": "Entertainment & Leisure",
+    "Sub-Sector": "Lottery & Sweepstakes"
+  },
+  {
+    "PA classification": "Consumer Goods & Retail",
+    "Sector/Area": "Food & Beverage",
+    "Sub-Sector": "Beverage Production"
+  },
+  {
+    "PA classification": "Consumer Goods & Retail",
+    "Sector/Area": "Food & Beverage",
+    "Sub-Sector": "Food Processing"
+  },
+  {
+    "PA classification": "Consumer Goods & Retail",
+    "Sector/Area": "Food and Beverage",
+    "Sub-Sector": "Confectionery"
+  },
+  {
+    "PA classification": "Consumer Goods & Retail",
+    "Sector/Area": "Food and Beverage",
+    "Sub-Sector": "Packaged Foods"
+  },
+  {
+    "PA classification": "Consumer Goods & Retail",
+    "Sector/Area": "Hospitality & Tourism",
+    "Sub-Sector": "Airlines and Aviation"
+  },
+  {
+    "PA classification": "Consumer Goods & Retail",
+    "Sector/Area": "Hospitality & Tourism",
+    "Sub-Sector": "Event Planning and Management"
+  },
+  {
+    "PA classification": "Consumer Goods & Retail",
+    "Sector/Area": "Hospitality & Tourism",
+    "Sub-Sector": "Hotels and Lodging"
+  },
+  {
+    "PA classification": "Consumer Goods & Retail",
+    "Sector/Area": "Hospitality & Tourism",
+    "Sub-Sector": "Restaurants and Food Services"
+  },
+  {
+    "PA classification": "Consumer Goods & Retail",
+    "Sector/Area": "Hospitality & Tourism",
+    "Sub-Sector": "Travel and Tour Operators"
+  },
+  {
+    "PA classification": "Consumer Goods & Retail",
+    "Sector/Area": "Household Goods",
+    "Sub-Sector": "Home Appliances"
+  },
+  {
+    "PA classification": "Consumer Goods & Retail",
+    "Sector/Area": "Household Goods",
+    "Sub-Sector": "Kitchenware"
+  },
+  {
+    "PA classification": "Consumer Goods & Retail",
+    "Sector/Area": "Luxury Goods",
+    "Sub-Sector": "Designer Apparel"
+  },
+  {
+    "PA classification": "Consumer Goods & Retail",
+    "Sector/Area": "Luxury Goods",
+    "Sub-Sector": "Fine Jewelry"
+  },
+  {
+    "PA classification": "Consumer Goods & Retail",
+    "Sector/Area": "Other",
+    "Sub-Sector": ""
+  },
+  {
+    "PA classification": "Consumer Goods & Retail",
+    "Sector/Area": "Personal & Household Services",
+    "Sub-Sector": "Domestic Services (e.g., cleaning, housekeeping)"
+  },
+  {
+    "PA classification": "Consumer Goods & Retail",
+    "Sector/Area": "Personal & Household Services",
+    "Sub-Sector": "Home Maintenance Services (e.g., plumbing, electrical)"
+  },
+  {
+    "PA classification": "Consumer Goods & Retail",
+    "Sector/Area": "Personal & Household Services",
+    "Sub-Sector": "Landscaping and Gardening Services"
+  },
+  {
+    "PA classification": "Consumer Goods & Retail",
+    "Sector/Area": "Personal & Household Services",
+    "Sub-Sector": "Personal Care Services (e.g., beauty salons, spas)"
+  },
+  {
+    "PA classification": "Corporate Finance Strategy",
+    "Sector/Area": "Corporate Strategy",
+    "Sub-Sector": "Business Transformation"
+  },
+  {
+    "PA classification": "Corporate Finance Strategy",
+    "Sector/Area": "Corporate Strategy",
+    "Sub-Sector": "Competitive Analysis"
+  },
+  {
+    "PA classification": "Corporate Finance Strategy",
+    "Sector/Area": "Financial Planning & Analysis",
+    "Sub-Sector": "Budgeting"
+  },
+  {
+    "PA classification": "Corporate Finance Strategy",
+    "Sector/Area": "Financial Planning & Analysis",
+    "Sub-Sector": "Forecasting"
+  },
+  {
+    "PA classification": "Corporate Finance Strategy",
+    "Sector/Area": "Mergers & Acquisitions",
+    "Sub-Sector": "Divestitures"
+  },
+  {
+    "PA classification": "Corporate Finance Strategy",
+    "Sector/Area": "Mergers & Acquisitions",
+    "Sub-Sector": "Strategic M&A"
+  },
+  {
+    "PA classification": "Corporate Finance Strategy",
+    "Sector/Area": "Other",
+    "Sub-Sector": ""
+  },
+  {
+    "PA classification": "Corporate Finance Strategy",
+    "Sector/Area": "Private Equity",
+    "Sub-Sector": "Buyouts"
+  },
+  {
+    "PA classification": "Corporate Finance Strategy",
+    "Sector/Area": "Private Equity",
+    "Sub-Sector": "Growth Capital"
+  },
+  {
+    "PA classification": "Corporate Finance Strategy",
+    "Sector/Area": "Private Equity",
+    "Sub-Sector": "Mezzanine Financing"
+  },
+  {
+    "PA classification": "Corporate Finance Strategy",
+    "Sector/Area": "Private Equity",
+    "Sub-Sector": "Secondary Markets"
+  },
+  {
+    "PA classification": "Corporate Finance Strategy",
+    "Sector/Area": "Valuation",
+    "Sub-Sector": "Asset Valuation"
+  },
+  {
+    "PA classification": "Corporate Finance Strategy",
+    "Sector/Area": "Valuation",
+    "Sub-Sector": "Equity Valuation"
+  },
+  {
+    "PA classification": "Corporate Finance Strategy",
+    "Sector/Area": "Venture Capital",
+    "Sub-Sector": "Early Stage"
+  },
+  {
+    "PA classification": "Corporate Finance Strategy",
+    "Sector/Area": "Venture Capital",
+    "Sub-Sector": "Growth Stage"
+  },
+  {
+    "PA classification": "Corporate Finance Strategy",
+    "Sector/Area": "Venture Capital",
+    "Sub-Sector": "Late Stage"
+  },
+  {
+    "PA classification": "Corporate Finance Strategy",
+    "Sector/Area": "Venture Capital",
+    "Sub-Sector": "Seed Stage"
+  },
+  {
+    "PA classification": "Corporate Finance Strategy",
+    "Sector/Area": "Venture Capital",
+    "Sub-Sector": "Venture Debt"
+  },
+  {
+    "PA classification": "Energy & Utilities",
+    "Sector/Area": "Energy Policy",
+    "Sub-Sector": ""
+  },
+  {
+    "PA classification": "Energy & Utilities",
+    "Sector/Area": "Energy Services",
+    "Sub-Sector": "Energy Consulting"
+  },
+  {
+    "PA classification": "Energy & Utilities",
+    "Sector/Area": "Non-Renewable Energy",
+    "Sub-Sector": ""
+  },
+  {
+    "PA classification": "Energy & Utilities",
+    "Sector/Area": "Oil and Gas",
+    "Sub-Sector": "Downstream"
+  },
+  {
+    "PA classification": "Energy & Utilities",
+    "Sector/Area": "Oil and Gas",
+    "Sub-Sector": "Exploration & Production"
+  },
+  {
+    "PA classification": "Energy & Utilities",
+    "Sector/Area": "Oil and Gas",
+    "Sub-Sector": "Midstream"
+  },
+  {
+    "PA classification": "Energy & Utilities",
+    "Sector/Area": "Other",
+    "Sub-Sector": ""
+  },
+  {
+    "PA classification": "Energy & Utilities",
+    "Sector/Area": "Renewable Energy",
+    "Sub-Sector": "Green Hydrogen"
+  },
+  {
+    "PA classification": "Energy & Utilities",
+    "Sector/Area": "Renewable Energy",
+    "Sub-Sector": "Hydropower"
+  },
+  {
+    "PA classification": "Energy & Utilities",
+    "Sector/Area": "Renewable Energy",
+    "Sub-Sector": "Solar Power"
+  },
+  {
+    "PA classification": "Energy & Utilities",
+    "Sector/Area": "Renewable Energy",
+    "Sub-Sector": "Wind Power"
+  },
+  {
+    "PA classification": "Energy & Utilities",
+    "Sector/Area": "Utilities",
+    "Sub-Sector": "Electricity Distribution"
+  },
+  {
+    "PA classification": "Energy & Utilities",
+    "Sector/Area": "Utilities",
+    "Sub-Sector": "Electricity Utilities"
+  },
+  {
+    "PA classification": "Energy & Utilities",
+    "Sector/Area": "Utilities",
+    "Sub-Sector": "Gas Utilities"
+  },
+  {
+    "PA classification": "Energy & Utilities",
+    "Sector/Area": "Utilities",
+    "Sub-Sector": "Water Utilities"
+  },
+  {
+    "PA classification": "Banking & Financial Services",
+    "Sector/Area": "Asset management",
+    "Sub-Sector": ""
+  },
+  {
+    "PA classification": "Banking & Financial Services",
+    "Sector/Area": "Corporate Banking",
+    "Sub-Sector": "Business Lending"
+  },
+  {
+    "PA classification": "Banking & Financial Services",
+    "Sector/Area": "Corporate Banking",
+    "Sub-Sector": "Commercial Mortgages"
+  },
+  {
+    "PA classification": "Banking & Financial Services",
+    "Sector/Area": "Investment Banking",
+    "Sub-Sector": "Capital Markets"
+  },
+  {
+    "PA classification": "Banking & Financial Services",
+    "Sector/Area": "Investment Banking",
+    "Sub-Sector": "Mergers & Acquisitions"
+  },
+  {
+    "PA classification": "Banking & Financial Services",
+    "Sector/Area": "Leasing and Factoring",
+    "Sub-Sector": ""
+  },
+  {
+    "PA classification": "Banking & Financial Services",
+    "Sector/Area": "Microfinance Institutions",
+    "Sub-Sector": ""
+  },
+  {
+    "PA classification": "Banking & Financial Services",
+    "Sector/Area": "Other",
+    "Sub-Sector": ""
+  },
+  {
+    "PA classification": "Banking & Financial Services",
+    "Sector/Area": "Payments & FinTech",
+    "Sub-Sector": "Digital Wallets"
+  },
+  {
+    "PA classification": "Banking & Financial Services",
+    "Sector/Area": "Payments & FinTech",
+    "Sub-Sector": "Peer-to-Peer Lending"
+  },
+  {
+    "PA classification": "Banking & Financial Services",
+    "Sector/Area": "Retail Banking",
+    "Sub-Sector": "Mortgages"
+  },
+  {
+    "PA classification": "Banking & Financial Services",
+    "Sector/Area": "Retail Banking",
+    "Sub-Sector": "Personal Banking"
+  },
+  {
+    "PA classification": "Banking & Financial Services",
+    "Sector/Area": "Wealth Management",
+    "Sub-Sector": ""
+  },
+  {
+    "PA classification": "Healthcare",
+    "Sector/Area": "Biotechnology",
+    "Sub-Sector": "Bioinformatics"
+  },
+  {
+    "PA classification": "Healthcare",
+    "Sector/Area": "Biotechnology",
+    "Sub-Sector": "Biologics"
+  },
+  {
+    "PA classification": "Healthcare",
+    "Sector/Area": "Biotechnology",
+    "Sub-Sector": "Biopharmaceuticals"
+  },
+  {
+    "PA classification": "Healthcare",
+    "Sector/Area": "Biotechnology",
+    "Sub-Sector": "Gene Therapy"
+  },
+  {
+    "PA classification": "Healthcare",
+    "Sector/Area": "Biotechnology",
+    "Sub-Sector": "Synthetic Biology"
+  },
+  {
+    "PA classification": "Healthcare",
+    "Sector/Area": "Biotechnology",
+    "Sub-Sector": "Vaccine Development"
+  },
+  {
+    "PA classification": "Healthcare",
+    "Sector/Area": "Health Insurance",
+    "Sub-Sector": "Individual Insurance"
+  },
+  {
+    "PA classification": "Healthcare",
+    "Sector/Area": "Healthcare Services",
+    "Sub-Sector": "Clinics"
+  },
+  {
+    "PA classification": "Healthcare",
+    "Sector/Area": "Healthcare Services",
+    "Sub-Sector": "Hospitals"
+  },
+  {
+    "PA classification": "Healthcare",
+    "Sector/Area": "Medical Devices",
+    "Sub-Sector": "Diagnostic Equipment"
+  },
+  {
+    "PA classification": "Healthcare",
+    "Sector/Area": "Medical Devices",
+    "Sub-Sector": "Surgical Instruments"
+  },
+  {
+    "PA classification": "Healthcare",
+    "Sector/Area": "Other",
+    "Sub-Sector": ""
+  },
+  {
+    "PA classification": "Healthcare",
+    "Sector/Area": "Pharmaceuticals",
+    "Sub-Sector": "Clinical Trials"
+  },
+  {
+    "PA classification": "Healthcare",
+    "Sector/Area": "Pharmaceuticals",
+    "Sub-Sector": "Drug Development"
+  },
+  {
+    "PA classification": "Healthcare",
+    "Sector/Area": "Pharmaceuticals",
+    "Sub-Sector": "Generic Pharmaceuticals"
+  },
+  {
+    "PA classification": "Healthcare",
+    "Sector/Area": "Pharmaceuticals",
+    "Sub-Sector": "Over-the-Counter (OTC) Drugs"
+  },
+  {
+    "PA classification": "Healthcare",
+    "Sector/Area": "Pharmaceuticals",
+    "Sub-Sector": "Prescription Drugs"
+  },
+  {
+    "PA classification": "Healthcare",
+    "Sector/Area": "Pharmaceuticals",
+    "Sub-Sector": "Regulatory Affairs"
+  },
+  {
+    "PA classification": "Automotive",
+    "Sector/Area": "Autonomous Vehicles",
+    "Sub-Sector": "Self-Driving Technology"
+  },
+  {
+    "PA classification": "Automotive",
+    "Sector/Area": "Dealerships and Retail",
+    "Sub-Sector": "Car Dealerships"
+  },
+  {
+    "PA classification": "Automotive",
+    "Sector/Area": "Other",
+    "Sub-Sector": ""
+  },
+  {
+    "PA classification": "Automotive",
+    "Sector/Area": "Parts and Components",
+    "Sub-Sector": "Engine Manufacturing"
+  },
+  {
+    "PA classification": "Automotive",
+    "Sector/Area": "Parts and Components",
+    "Sub-Sector": "Tires and Wheels"
+  },
+  {
+    "PA classification": "Automotive",
+    "Sector/Area": "Vehicle Manufacturing",
+    "Sub-Sector": "Electric Vehicles"
+  },
+  {
+    "PA classification": "Automotive",
+    "Sector/Area": "Vehicle Manufacturing",
+    "Sub-Sector": "Hybrid Vehicles"
+  },
+  {
+    "PA classification": "Automotive",
+    "Sector/Area": "Vehicle Manufacturing",
+    "Sub-Sector": "Traditional Vehicles"
+  },
+  {
+    "PA classification": "Chemicals",
+    "Sector/Area": "Agrochemicals",
+    "Sub-Sector": ""
+  },
+  {
+    "PA classification": "Chemicals",
+    "Sector/Area": "Basic Chemicals",
+    "Sub-Sector": "Industrial Gases"
+  },
+  {
+    "PA classification": "Chemicals",
+    "Sector/Area": "Other",
+    "Sub-Sector": ""
+  },
+  {
+    "PA classification": "Chemicals",
+    "Sector/Area": "Petrochemicals",
+    "Sub-Sector": ""
+  },
+  {
+    "PA classification": "Chemicals",
+    "Sector/Area": "Specialty Chemicals",
+    "Sub-Sector": ""
+  },
+  {
+    "PA classification": "Construction & Engineering",
+    "Sector/Area": "Architecture",
+    "Sub-Sector": "Architectural Design"
+  },
+  {
+    "PA classification": "Construction & Engineering",
+    "Sector/Area": "Building and Construction",
+    "Sub-Sector": "Commercial Construction"
+  },
+  {
+    "PA classification": "Construction & Engineering",
+    "Sector/Area": "Building and Construction",
+    "Sub-Sector": "Residential Construction"
+  },
+  {
+    "PA classification": "Construction & Engineering",
+    "Sector/Area": "Civil Engineering",
+    "Sub-Sector": "Infrastructure"
+  },
+  {
+    "PA classification": "Construction & Engineering",
+    "Sector/Area": "Civil Engineering",
+    "Sub-Sector": "Road Construction"
+  },
+  {
+    "PA classification": "Construction & Engineering",
+    "Sector/Area": "Construction Materials",
+    "Sub-Sector": "Cement"
+  },
+  {
+    "PA classification": "Construction & Engineering",
+    "Sector/Area": "Infrastructure",
+    "Sub-Sector": "Bridges"
+  },
+  {
+    "PA classification": "Construction & Engineering",
+    "Sector/Area": "Infrastructure",
+    "Sub-Sector": "Tunnels"
+  },
+  {
+    "PA classification": "Construction & Engineering",
+    "Sector/Area": "Other",
+    "Sub-Sector": ""
+  },
+  {
+    "PA classification": "Manufacturing",
+    "Sector/Area": "Electronics and Electrical Equipment",
+    "Sub-Sector": ""
+  },
+  {
+    "PA classification": "Manufacturing",
+    "Sector/Area": "Industrial Machinery",
+    "Sub-Sector": ""
+  },
+  {
+    "PA classification": "Manufacturing",
+    "Sector/Area": "Other",
+    "Sub-Sector": ""
+  },
+  {
+    "PA classification": "Manufacturing",
+    "Sector/Area": "Shipbuilding",
+    "Sub-Sector": ""
+  },
+  {
+    "PA classification": "Manufacturing",
+    "Sector/Area": "Steel",
+    "Sub-Sector": ""
+  },
+  {
+    "PA classification": "Metals & Mining",
+    "Sector/Area": "Industrial Metals",
+    "Sub-Sector": ""
+  },
+  {
+    "PA classification": "Metals & Mining",
+    "Sector/Area": "Minerals and Aggregates",
+    "Sub-Sector": ""
+  },
+  {
+    "PA classification": "Metals & Mining",
+    "Sector/Area": "Mining Operations",
+    "Sub-Sector": ""
+  },
+  {
+    "PA classification": "Metals & Mining",
+    "Sector/Area": "Other",
+    "Sub-Sector": ""
+  },
+  {
+    "PA classification": "Metals & Mining",
+    "Sector/Area": "Precious Metals",
+    "Sub-Sector": ""
+  },
+  {
+    "PA classification": "Textiles",
+    "Sector/Area": "Fabric and Textile Manufacturing",
+    "Sub-Sector": "Cotton Textiles"
+  },
+  {
+    "PA classification": "Textiles",
+    "Sector/Area": "Fabric and Textile Manufacturing",
+    "Sub-Sector": "Synthetic Textiles"
+  },
+  {
+    "PA classification": "Textiles",
+    "Sector/Area": "Home Textiles",
+    "Sub-Sector": ""
+  },
+  {
+    "PA classification": "Textiles",
+    "Sector/Area": "Other",
+    "Sub-Sector": ""
+  },
+  {
+    "PA classification": "Transportation & Logistics",
+    "Sector/Area": "Airlines",
+    "Sub-Sector": "Cargo Airlines"
+  },
+  {
+    "PA classification": "Transportation & Logistics",
+    "Sector/Area": "Airlines",
+    "Sub-Sector": "Passenger Airlines"
+  },
+  {
+    "PA classification": "Transportation & Logistics",
+    "Sector/Area": "Logistics Services",
+    "Sub-Sector": "3PL"
+  },
+  {
+    "PA classification": "Transportation & Logistics",
+    "Sector/Area": "Other",
+    "Sub-Sector": ""
+  },
+  {
+    "PA classification": "Transportation & Logistics",
+    "Sector/Area": "Rail",
+    "Sub-Sector": "Freight Rail"
+  },
+  {
+    "PA classification": "Transportation & Logistics",
+    "Sector/Area": "Rail",
+    "Sub-Sector": "Passenger Rail"
+  },
+  {
+    "PA classification": "Transportation & Logistics",
+    "Sector/Area": "Rail Transportation",
+    "Sub-Sector": "Freight Rail Services"
+  },
+  {
+    "PA classification": "Transportation & Logistics",
+    "Sector/Area": "Rail Transportation",
+    "Sub-Sector": "Passenger Rail Services"
+  },
+  {
+    "PA classification": "Transportation & Logistics",
+    "Sector/Area": "Rail Transportation",
+    "Sub-Sector": "Railway Construction and Maintenance"
+  },
+  {
+    "PA classification": "Transportation & Logistics",
+    "Sector/Area": "Road Transport",
+    "Sub-Sector": "Trucking"
+  },
+  {
+    "PA classification": "Transportation & Logistics",
+    "Sector/Area": "Road Transportation",
+    "Sub-Sector": "Freight Transportation"
+  },
+  {
+    "PA classification": "Transportation & Logistics",
+    "Sector/Area": "Road Transportation",
+    "Sub-Sector": "Road Construction and Maintenance"
+  },
+  {
+    "PA classification": "Transportation & Logistics",
+    "Sector/Area": "Road Transportation",
+    "Sub-Sector": "Traffic Management Systems"
+  },
+  {
+    "PA classification": "Transportation & Logistics",
+    "Sector/Area": "Shipping and Maritime",
+    "Sub-Sector": "Container Shipping"
+  },
+  {
+    "PA classification": "Transportation & Logistics",
+    "Sector/Area": "Shipping and Maritime",
+    "Sub-Sector": "Port Operations"
+  },
+  {
+    "PA classification": "Transportation & Logistics",
+    "Sector/Area": "Supply Chain Management",
+    "Sub-Sector": "Inventory Management"
+  },
+  {
+    "PA classification": "Transportation & Logistics",
+    "Sector/Area": "Supply Chain Management",
+    "Sub-Sector": "Logistics and Distribution"
+  },
+  {
+    "PA classification": "Transportation & Logistics",
+    "Sector/Area": "Supply Chain Management",
+    "Sub-Sector": "Supply Chain Optimization"
+  },
+  {
+    "PA classification": "Insurance",
+    "Sector/Area": "InsureTech",
+    "Sub-Sector": ""
+  },
+  {
+    "PA classification": "Insurance",
+    "Sector/Area": "Life Insurance",
+    "Sub-Sector": "Accidental Death Insurance"
+  },
+  {
+    "PA classification": "Insurance",
+    "Sector/Area": "Life Insurance",
+    "Sub-Sector": "Annuities"
+  },
+  {
+    "PA classification": "Insurance",
+    "Sector/Area": "Life Insurance",
+    "Sub-Sector": "Critical Illness Insurance"
+  },
+  {
+    "PA classification": "Insurance",
+    "Sector/Area": "Life Insurance",
+    "Sub-Sector": "Disability Insurance"
+  },
+  {
+    "PA classification": "Insurance",
+    "Sector/Area": "Life Insurance",
+    "Sub-Sector": "Endowment Policies"
+  },
+  {
+    "PA classification": "Insurance",
+    "Sector/Area": "Life Insurance",
+    "Sub-Sector": "Term Life Insurance"
+  },
+  {
+    "PA classification": "Insurance",
+    "Sector/Area": "Life Insurance",
+    "Sub-Sector": "Universal Life Insurance"
+  },
+  {
+    "PA classification": "Insurance",
+    "Sector/Area": "Life Insurance",
+    "Sub-Sector": "Whole Life Insurance"
+  },
+  {
+    "PA classification": "Insurance",
+    "Sector/Area": "Non-Life Insurance",
+    "Sub-Sector": "Auto Insurance"
+  },
+  {
+    "PA classification": "Insurance",
+    "Sector/Area": "Non-Life Insurance",
+    "Sub-Sector": "Casualty Insurance"
+  },
+  {
+    "PA classification": "Insurance",
+    "Sector/Area": "Non-Life Insurance",
+    "Sub-Sector": "Crop Insurance"
+  },
+  {
+    "PA classification": "Insurance",
+    "Sector/Area": "Non-Life Insurance",
+    "Sub-Sector": "Health Insurance"
+  },
+  {
+    "PA classification": "Insurance",
+    "Sector/Area": "Non-Life Insurance",
+    "Sub-Sector": "Homeowners Insurance"
+  },
+  {
+    "PA classification": "Insurance",
+    "Sector/Area": "Non-Life Insurance",
+    "Sub-Sector": "Liability Insurance"
+  },
+  {
+    "PA classification": "Insurance",
+    "Sector/Area": "Non-Life Insurance",
+    "Sub-Sector": "Marine Insurance"
+  },
+  {
+    "PA classification": "Insurance",
+    "Sector/Area": "Non-Life Insurance",
+    "Sub-Sector": "Pet Insurance"
+  },
+  {
+    "PA classification": "Insurance",
+    "Sector/Area": "Non-Life Insurance",
+    "Sub-Sector": "Property Insurance"
+  },
+  {
+    "PA classification": "Insurance",
+    "Sector/Area": "Non-Life Insurance",
+    "Sub-Sector": "Travel Insurance"
+  },
+  {
+    "PA classification": "Insurance",
+    "Sector/Area": "Non-Life Insurance",
+    "Sub-Sector": "Workers' Compensation Insurance"
+  },
+  {
+    "PA classification": "Insurance",
+    "Sector/Area": "Other",
+    "Sub-Sector": ""
+  },
+  {
+    "PA classification": "Insurance",
+    "Sector/Area": "Reinsurance",
+    "Sub-Sector": ""
+  },
+  {
+    "PA classification": "Insurance",
+    "Sector/Area": "Risk and Regulation",
+    "Sub-Sector": ""
+  },
+  {
+    "PA classification": "Human Resources & Workforce Mgmt",
+    "Sector/Area": "HR Technology",
+    "Sub-Sector": "Payroll Software"
+  },
+  {
+    "PA classification": "Human Resources & Workforce Mgmt",
+    "Sector/Area": "Other",
+    "Sub-Sector": ""
+  },
+  {
+    "PA classification": "Human Resources & Workforce Mgmt",
+    "Sector/Area": "Recruitment and Staffing",
+    "Sub-Sector": "Talent Acquisition"
+  },
+  {
+    "PA classification": "Legal & Compliance",
+    "Sector/Area": "Compliance and Regulatory Affairs",
+    "Sub-Sector": "Risk Management"
+  },
+  {
+    "PA classification": "Legal & Compliance",
+    "Sector/Area": "Intellectual Property",
+    "Sub-Sector": "Trademark Law"
+  },
+  {
+    "PA classification": "Legal & Compliance",
+    "Sector/Area": "Other",
+    "Sub-Sector": ""
+  },
+  {
+    "PA classification": "Macroeconomics",
+    "Sector/Area": "Development Finance",
+    "Sub-Sector": "Infrastructure Financing"
+  },
+  {
+    "PA classification": "Macroeconomics",
+    "Sector/Area": "Development Finance",
+    "Sub-Sector": "International Financial Institutions"
+  },
+  {
+    "PA classification": "Macroeconomics",
+    "Sector/Area": "Development Finance",
+    "Sub-Sector": "Microfinance and Inclusive Financing"
+  },
+  {
+    "PA classification": "Macroeconomics",
+    "Sector/Area": "Development Finance",
+    "Sub-Sector": "Public and Private Investment Funds"
+  },
+  {
+    "PA classification": "Macroeconomics",
+    "Sector/Area": "Economic Development",
+    "Sub-Sector": "Global Economic Outlook"
+  },
+  {
+    "PA classification": "Macroeconomics",
+    "Sector/Area": "Economic Development",
+    "Sub-Sector": "National Economic Growth"
+  },
+  {
+    "PA classification": "Macroeconomics",
+    "Sector/Area": "Economic Development",
+    "Sub-Sector": "Regional Economic Integration"
+  },
+  {
+    "PA classification": "Macroeconomics",
+    "Sector/Area": "Fiscal and Monetary Policy",
+    "Sub-Sector": ""
+  },
+  {
+    "PA classification": "Macroeconomics",
+    "Sector/Area": "Labor Market and Employment Policy",
+    "Sub-Sector": "Diversity, Equity, and Inclusion (DE&I) in the Workplace"
+  },
+  {
+    "PA classification": "Macroeconomics",
+    "Sector/Area": "Labor Market and Employment Policy",
+    "Sub-Sector": "Employment Policies and Welfare"
+  },
+  {
+    "PA classification": "Macroeconomics",
+    "Sector/Area": "Labor Market and Employment Policy",
+    "Sub-Sector": "Labor Market Dynamics"
+  },
+  {
+    "PA classification": "Macroeconomics",
+    "Sector/Area": "Labor Market and Employment Policy",
+    "Sub-Sector": "Wages and Income Distribution"
+  },
+  {
+    "PA classification": "Macroeconomics",
+    "Sector/Area": "Other",
+    "Sub-Sector": ""
+  },
+  {
+    "PA classification": "Macroeconomics",
+    "Sector/Area": "Demographics & Population",
+    "Sub-Sector": ""
+  },
+  {
+    "PA classification": "Macroeconomics",
+    "Sector/Area": "Trade and Globalization",
+    "Sub-Sector": "Export and Import Policies"
+  },
+  {
+    "PA classification": "Macroeconomics",
+    "Sector/Area": "Trade and Globalization",
+    "Sub-Sector": "Global Supply Chains and Trade Logistics"
+  },
+  {
+    "PA classification": "Macroeconomics",
+    "Sector/Area": "Trade and Globalization",
+    "Sub-Sector": "International Trade Agreements"
+  },
+  {
+    "PA classification": "Public Sector & Government",
+    "Sector/Area": "Defense and Military",
+    "Sub-Sector": "Defense Contracts"
+  },
+  {
+    "PA classification": "Public Sector & Government",
+    "Sector/Area": "Defense and Military",
+    "Sub-Sector": "Homeland Security"
+  },
+  {
+    "PA classification": "Public Sector & Government",
+    "Sector/Area": "Defense and Military",
+    "Sub-Sector": "National Defense"
+  },
+  {
+    "PA classification": "Public Sector & Government",
+    "Sector/Area": "Government Services",
+    "Sub-Sector": "Housing Authorities"
+  },
+  {
+    "PA classification": "Public Sector & Government",
+    "Sector/Area": "Government Services",
+    "Sub-Sector": "Public Health"
+  },
+  {
+    "PA classification": "Public Sector & Government",
+    "Sector/Area": "Government Services",
+    "Sub-Sector": "Social Services"
+  },
+  {
+    "PA classification": "Public Sector & Government",
+    "Sector/Area": "Government Services",
+    "Sub-Sector": "Transportation Services"
+  },
+  {
+    "PA classification": "Public Sector & Government",
+    "Sector/Area": "International Relations",
+    "Sub-Sector": "Diplomacy"
+  },
+  {
+    "PA classification": "Public Sector & Government",
+    "Sector/Area": "International Relations",
+    "Sub-Sector": "Foreign Affairs"
+  },
+  {
+    "PA classification": "Public Sector & Government",
+    "Sector/Area": "Other",
+    "Sub-Sector": ""
+  },
+  {
+    "PA classification": "Public Sector & Government",
+    "Sector/Area": "Public Administration",
+    "Sub-Sector": "Local Government"
+  },
+  {
+    "PA classification": "Public Sector & Government",
+    "Sector/Area": "Public Administration",
+    "Sub-Sector": "State Government"
+  },
+  {
+    "PA classification": "Public Sector & Government",
+    "Sector/Area": "Public Safety",
+    "Sub-Sector": "Disaster Management"
+  },
+  {
+    "PA classification": "Public Sector & Government",
+    "Sector/Area": "Public Safety",
+    "Sub-Sector": "Emergency Services"
+  },
+  {
+    "PA classification": "Public Sector & Government",
+    "Sector/Area": "Public Safety",
+    "Sub-Sector": "Fire Services"
+  },
+  {
+    "PA classification": "Public Sector & Government",
+    "Sector/Area": "Public Safety",
+    "Sub-Sector": "Law Enforcement"
+  },
+  {
+    "PA classification": "Real Estate",
+    "Sector/Area": "Commercial Real Estate",
+    "Sub-Sector": "Office Space"
+  },
+  {
+    "PA classification": "Real Estate",
+    "Sector/Area": "Commercial Real Estate",
+    "Sub-Sector": "Retail Space"
+  },
+  {
+    "PA classification": "Real Estate",
+    "Sector/Area": "Industrial Real Estate",
+    "Sub-Sector": "Warehousing"
+  },
+  {
+    "PA classification": "Real Estate",
+    "Sector/Area": "Other",
+    "Sub-Sector": ""
+  },
+  {
+    "PA classification": "Real Estate",
+    "Sector/Area": "Real Estate Investment Trusts (REITs)",
+    "Sub-Sector": "Equity REITs"
+  },
+  {
+    "PA classification": "Real Estate",
+    "Sector/Area": "Residential Real Estate",
+    "Sub-Sector": "Housing Development"
+  },
+  {
+    "PA classification": "Real Estate",
+    "Sector/Area": "Residential Real Estate",
+    "Sub-Sector": "Rentals"
+  },
+  {
+    "PA classification": "Social Impact",
+    "Sector/Area": "Adaptation & Resilience",
+    "Sub-Sector": "Climate Adaptation Strategies"
+  },
+  {
+    "PA classification": "Social Impact",
+    "Sector/Area": "Adaptation & Resilience",
+    "Sub-Sector": "Disaster Risk Reduction"
+  },
+  {
+    "PA classification": "Social Impact",
+    "Sector/Area": "Adaptation & Resilience",
+    "Sub-Sector": "Urban Resilience Initiatives"
+  },
+  {
+    "PA classification": "Social Impact",
+    "Sector/Area": "Climate and Environment",
+    "Sub-Sector": "Biodiversity Conservation"
+  },
+  {
+    "PA classification": "Social Impact",
+    "Sector/Area": "Climate and Environment",
+    "Sub-Sector": "Environmental Justice"
+  },
+  {
+    "PA classification": "Social Impact",
+    "Sector/Area": "Climate and Environment",
+    "Sub-Sector": "Sustainable Practices and Education"
+  },
+  {
+    "PA classification": "Social Impact",
+    "Sector/Area": "Corporate Social Responsibility",
+    "Sub-Sector": "Philanthropy"
+  },
+  {
+    "PA classification": "Social Impact",
+    "Sector/Area": "Corporate Social Responsibility (CSR)",
+    "Sub-Sector": "Environmental Initiatives"
+  },
+  {
+    "PA classification": "Social Impact",
+    "Sector/Area": "Development Finance",
+    "Sub-Sector": "Impact Investing"
+  },
+  {
+    "PA classification": "Social Impact",
+    "Sector/Area": "Development Finance",
+    "Sub-Sector": "Microfinance"
+  },
+  {
+    "PA classification": "Social Impact",
+    "Sector/Area": "Development Finance",
+    "Sub-Sector": "Public-Private Partnerships"
+  },
+  {
+    "PA classification": "Social Impact",
+    "Sector/Area": "Diversity, Equity & Inclusion (DE&I)",
+    "Sub-Sector": "Anti-Discrimination Policies"
+  },
+  {
+    "PA classification": "Social Impact",
+    "Sector/Area": "Diversity, Equity & Inclusion (DE&I)",
+    "Sub-Sector": "Gender Equality Programs"
+  },
+  {
+    "PA classification": "Social Impact",
+    "Sector/Area": "Diversity, Equity & Inclusion (DE&I)",
+    "Sub-Sector": "Workplace Diversity Initiatives"
+  },
+  {
+    "PA classification": "Social Impact",
+    "Sector/Area": "Education",
+    "Sub-Sector": "Adult Education and Literacy Programs"
+  },
+  {
+    "PA classification": "Social Impact",
+    "Sector/Area": "Education",
+    "Sub-Sector": "Educational Technology (EdTech)"
+  },
+  {
+    "PA classification": "Social Impact",
+    "Sector/Area": "Education",
+    "Sub-Sector": "Higher Education"
+  },
+  {
+    "PA classification": "Social Impact",
+    "Sector/Area": "Education",
+    "Sub-Sector": "Online Education"
+  },
+  {
+    "PA classification": "Social Impact",
+    "Sector/Area": "Education",
+    "Sub-Sector": "Primary and Secondary Education"
+  },
+  {
+    "PA classification": "Social Impact",
+    "Sector/Area": "Education",
+    "Sub-Sector": "STEM Education Initiatives"
+  },
+  {
+    "PA classification": "Social Impact",
+    "Sector/Area": "Education",
+    "Sub-Sector": "Vocational and Technical Training"
+  },
+  {
+    "PA classification": "Social Impact",
+    "Sector/Area": "Food, Hunger, and Agriculture",
+    "Sub-Sector": "Food Security Programs"
+  },
+  {
+    "PA classification": "Social Impact",
+    "Sector/Area": "Food, Hunger, and Agriculture",
+    "Sub-Sector": "Sustainable Agriculture Initiatives"
+  },
+  {
+    "PA classification": "Social Impact",
+    "Sector/Area": "Foundations & Philanthropies",
+    "Sub-Sector": "Capacity Building"
+  },
+  {
+    "PA classification": "Social Impact",
+    "Sector/Area": "Foundations & Philanthropies",
+    "Sub-Sector": "Community Engagement"
+  },
+  {
+    "PA classification": "Social Impact",
+    "Sector/Area": "Foundations & Philanthropies",
+    "Sub-Sector": "Grantmaking"
+  },
+  {
+    "PA classification": "Social Impact",
+    "Sector/Area": "Global Health",
+    "Sub-Sector": "Access to Medicines and Vaccines"
+  },
+  {
+    "PA classification": "Social Impact",
+    "Sector/Area": "Global Health",
+    "Sub-Sector": "Community Health Initiatives"
+  },
+  {
+    "PA classification": "Social Impact",
+    "Sector/Area": "Global Health",
+    "Sub-Sector": "Health Equity Programs"
+  },
+  {
+    "PA classification": "Social Impact",
+    "Sector/Area": "Humanitarian Crisis",
+    "Sub-Sector": "Disaster Relief and Recovery"
+  },
+  {
+    "PA classification": "Social Impact",
+    "Sector/Area": "Humanitarian Crisis",
+    "Sub-Sector": "Emergency Response"
+  },
+  {
+    "PA classification": "Social Impact",
+    "Sector/Area": "Humanitarian Crisis",
+    "Sub-Sector": "Refugee Support Services"
+  },
+  {
+    "PA classification": "Social Impact",
+    "Sector/Area": "Impact Investing",
+    "Sub-Sector": "Environmental Funds"
+  },
+  {
+    "PA classification": "Social Impact",
+    "Sector/Area": "Impact Investing",
+    "Sub-Sector": "Social Enterprise Investments"
+  },
+  {
+    "PA classification": "Social Impact",
+    "Sector/Area": "Just Transition",
+    "Sub-Sector": "Fair Transition Policies"
+  },
+  {
+    "PA classification": "Social Impact",
+    "Sector/Area": "Just Transition",
+    "Sub-Sector": "Green Jobs Initiatives"
+  },
+  {
+    "PA classification": "Social Impact",
+    "Sector/Area": "Just Transition",
+    "Sub-Sector": "Workforce Development in Renewable Energy"
+  },
+  {
+    "PA classification": "Social Impact",
+    "Sector/Area": "Nonprofit Organizations",
+    "Sub-Sector": "Community Development"
+  },
+  {
+    "PA classification": "Social Impact",
+    "Sector/Area": "Nonprofit Organizations",
+    "Sub-Sector": "Disaster Relief"
+  },
+  {
+    "PA classification": "Social Impact",
+    "Sector/Area": "Non-Profit Organizations",
+    "Sub-Sector": "Charitable Foundations"
+  },
+  {
+    "PA classification": "Social Impact",
+    "Sector/Area": "Other",
+    "Sub-Sector": ""
+  },
+  {
+    "PA classification": "Information Technology",
+    "Sector/Area": "Artificial Intelligence",
+    "Sub-Sector": "AI Ethics and Regulation"
+  },
+  {
+    "PA classification": "Information Technology",
+    "Sector/Area": "Artificial Intelligence",
+    "Sub-Sector": "Computer Vision"
+  },
+  {
+    "PA classification": "Information Technology",
+    "Sector/Area": "Artificial Intelligence",
+    "Sub-Sector": "Machine Learning"
+  },
+  {
+    "PA classification": "Information Technology",
+    "Sector/Area": "Artificial Intelligence",
+    "Sub-Sector": "Natural Language Processing"
+  },
+  {
+    "PA classification": "Information Technology",
+    "Sector/Area": "Cloud Computing",
+    "Sub-Sector": "IaaS"
+  },
+  {
+    "PA classification": "Information Technology",
+    "Sector/Area": "Cloud Computing",
+    "Sub-Sector": "SaaS"
+  },
+  {
+    "PA classification": "Information Technology",
+    "Sector/Area": "Cybersecurity",
+    "Sub-Sector": "Cyber Threat Intelligence"
+  },
+  {
+    "PA classification": "Information Technology",
+    "Sector/Area": "Cybersecurity",
+    "Sub-Sector": "Network Security"
+  },
+  {
+    "PA classification": "Information Technology",
+    "Sector/Area": "Digital Economy",
+    "Sub-Sector": "Digital Marketing"
+  },
+  {
+    "PA classification": "Information Technology",
+    "Sector/Area": "Hardware and Equipment",
+    "Sub-Sector": "Computer Manufacturing"
+  },
+  {
+    "PA classification": "Information Technology",
+    "Sector/Area": "Information Technology",
+    "Sub-Sector": "Cloud Computing"
+  },
+  {
+    "PA classification": "Information Technology",
+    "Sector/Area": "Information Technology",
+    "Sub-Sector": "Cybersecurity Solutions"
+  },
+  {
+    "PA classification": "Information Technology",
+    "Sector/Area": "Information Technology",
+    "Sub-Sector": "Data Centers"
+  },
+  {
+    "PA classification": "Information Technology",
+    "Sector/Area": "Information Technology",
+    "Sub-Sector": "Network Infrastructure"
+  },
+  {
+    "PA classification": "Information Technology",
+    "Sector/Area": "IT Services and Consulting",
+    "Sub-Sector": "IT Outsourcing"
+  },
+  {
+    "PA classification": "Information Technology",
+    "Sector/Area": "IT Services and Consulting",
+    "Sub-Sector": "System Integration"
+  },
+  {
+    "PA classification": "Information Technology",
+    "Sector/Area": "Other",
+    "Sub-Sector": ""
+  },
+  {
+    "PA classification": "Information Technology",
+    "Sector/Area": "Software Development",
+    "Sub-Sector": "Custom Software"
+  },
+  {
+    "PA classification": "Information Technology",
+    "Sector/Area": "Software Development",
+    "Sub-Sector": "Mobile App Development"
+  },
+  {
+    "PA classification": "Information Technology",
+    "Sector/Area": "Virtual and Augmented Reality",
+    "Sub-Sector": "Content Creation for the Metaverse"
+  },
+  {
+    "PA classification": "Information Technology",
+    "Sector/Area": "Virtual and Augmented Reality",
+    "Sub-Sector": "Metaverse Platforms"
+  },
+  {
+    "PA classification": "Information Technology",
+    "Sector/Area": "Virtual and Augmented Reality",
+    "Sub-Sector": "Virtual Economies"
+  },
+  {
+    "PA classification": "Media & Entertainment",
+    "Sector/Area": "Art & Cultural Industries",
+    "Sub-Sector": "Cultural Heritage"
+  },
+  {
+    "PA classification": "Media & Entertainment",
+    "Sector/Area": "Art & Cultural Industries",
+    "Sub-Sector": "Museums and Galleries"
+  },
+  {
+    "PA classification": "Media & Entertainment",
+    "Sector/Area": "Art & Cultural Industries",
+    "Sub-Sector": "Performing Arts"
+  },
+  {
+    "PA classification": "Media & Entertainment",
+    "Sector/Area": "Art & Cultural Industries",
+    "Sub-Sector": "Visual Arts"
+  },
+  {
+    "PA classification": "Media & Entertainment",
+    "Sector/Area": "Broadcasting and Cable",
+    "Sub-Sector": "Radio Broadcasting"
+  },
+  {
+    "PA classification": "Media & Entertainment",
+    "Sector/Area": "Broadcasting and Cable",
+    "Sub-Sector": "TV Networks"
+  },
+  {
+    "PA classification": "Media & Entertainment",
+    "Sector/Area": "Film and Motion Pictures",
+    "Sub-Sector": "Film Distribution"
+  },
+  {
+    "PA classification": "Media & Entertainment",
+    "Sector/Area": "Film and Motion Pictures",
+    "Sub-Sector": "Film Production"
+  },
+  {
+    "PA classification": "Media & Entertainment",
+    "Sector/Area": "Gaming",
+    "Sub-Sector": "Console Games"
+  },
+  {
+    "PA classification": "Media & Entertainment",
+    "Sector/Area": "Gaming",
+    "Sub-Sector": "Mobile Games"
+  },
+  {
+    "PA classification": "Media & Entertainment",
+    "Sector/Area": "Music",
+    "Sub-Sector": "Record Labels"
+  },
+  {
+    "PA classification": "Media & Entertainment",
+    "Sector/Area": "Other",
+    "Sub-Sector": ""
+  },
+  {
+    "PA classification": "Media & Entertainment",
+    "Sector/Area": "Publishing",
+    "Sub-Sector": "Book Publishing"
+  },
+  {
+    "PA classification": "Telecommunications",
+    "Sector/Area": "Broadband Providers",
+    "Sub-Sector": "Fiber Optics"
+  },
+  {
+    "PA classification": "Telecommunications",
+    "Sector/Area": "Mobile Network Operators",
+    "Sub-Sector": "4G/5G Networks"
+  },
+  {
+    "PA classification": "Telecommunications",
+    "Sector/Area": "Mobile Network Operators",
+    "Sub-Sector": "Network Infrastructure"
+  },
+  {
+    "PA classification": "Telecommunications",
+    "Sector/Area": "Other",
+    "Sub-Sector": ""
+  },
+  {
+    "PA classification": "Telecommunications",
+    "Sector/Area": "Satellite Communications",
+    "Sub-Sector": "Satellite Internet"
+  },
+  {
+    "PA classification": "Telecommunications",
+    "Sector/Area": "Telecom Equipment",
+    "Sub-Sector": "Mobile Devices"
+  }
+]

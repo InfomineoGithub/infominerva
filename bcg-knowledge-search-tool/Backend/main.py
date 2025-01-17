@@ -19,6 +19,14 @@ app.add_middleware(
 
 search_columns = ["Tags", "Sector/Area", "Sub-Sector", "Description", "Source name"]
 
+Validation_columns = ['PA classification', 'Sector/Area', 'Sub-Sector', 'Source name',
+       'Description', 'Type (General DB, specialized, ...)', 'Free/Paid?',
+       'Geography', 'Regional data', 'Country data',
+       'Frequency cover harmonized for all geos ? ', 'Frequency ', 'Years',
+       'Latest year available', 'Forecasts?', 'Latest forecast year avalable',
+       'Tags', 'Format ', 'Expert opinion', 'Submitter_email',
+       'Submitter_role', 'Status', 'Reliability score (1-10) ', 'Link']
+
 # Load the database
 df = pd.read_csv("Database.csv", encoding='latin-1')
 
@@ -84,6 +92,66 @@ async def get_all_users():
 
 ####################### END OF USER AUTHENTICATION ############################
 
+
+####################### DATA VALIDATION ############################
+
+@app.get("/get_pending_entries")
+async def get_pending_entries():
+    global df
+    # Get only pending entries, include index as id
+    pending_entries = df[df['Status'] == 'pending'].reset_index().replace({pd.NA: None, float('nan'): None})
+    # Convert index to 'id' column
+    pending_entries = pending_entries.rename(columns={'index': 'id'})
+    return {"entries": pending_entries.to_dict('records')}
+
+@app.post("/update_entry")
+async def update_entry(data: dict):
+    global df
+    entry_id = data.get('id')  # We'll use index as ID
+    updated_data = data.get('data')
+    
+    try:
+        # Update the entry
+        for column, value in updated_data.items():
+            df.loc[entry_id, column] = value
+            
+        df.to_csv("Database.csv", index=False, encoding='latin-1')
+        reload_database()  # Reload for all sessions
+        return {"message": "Entry updated successfully"}
+    except Exception as e:
+        return {"error": str(e)}, 400
+
+@app.post("/validate_entry")
+async def validate_entry(data: dict):
+    global df
+    entry_id = data.get('id')
+    
+    try:
+        # Convert entry_id to integer since it comes as string from JSON
+        entry_id = int(entry_id)
+        # Update status to approved
+        df.loc[entry_id, 'Status'] = 'approved'
+        df.to_csv("Database.csv", index=False, encoding='latin-1')
+        reload_database()
+        return {"message": "Entry validated successfully"}
+    except Exception as e:
+        return {"error": str(e)}, 400
+
+@app.delete("/delete_entry/{entry_id}")
+async def delete_entry(entry_id: int):
+    global df
+    try:
+        # Drop the row by index
+        df = df.drop(index=int(entry_id))
+        df.to_csv("Database.csv", index=False, encoding='latin-1')
+        reload_database()
+        return {"message": "Entry deleted successfully"}
+    except Exception as e:
+        return {"error": str(e)}, 400
+    
+
+####################### END OF DATA VALIDATION ############################
+
 @app.get("/search")
 async def search(query: str, sort_by: str = "relevance"):
     results = advanced_search(df, query, search_columns)
@@ -92,8 +160,6 @@ async def search(query: str, sort_by: str = "relevance"):
     # You could add other sorting options here
     return {"results": results}
  
-
-
 
 @app.get("/llm")
 async def llm_search(link: str):
