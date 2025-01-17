@@ -1,8 +1,8 @@
-# BCG Knowledge Search Tool
+# Infominerva Knowledge Search Tool
 
 ## Overview
 
-The BCG Knowledge Search Tool is a powerful, web-based application designed to streamline access to BCG's internal knowledge base. It combines a robust backend API with a user-friendly frontend interface, providing authorized users with quick and efficient search capabilities across BCG's vast repository of information.
+The infominerva Tool is a powerful, web-based application designed to streamline access to BCG's internal knowledge base. It combines a robust backend API with a user-friendly frontend interface, providing authorized users with quick and efficient search capabilities across BCG's vast repository of information.
 
 ## Key Features
 
