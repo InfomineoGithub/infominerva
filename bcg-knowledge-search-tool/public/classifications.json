@@ -27,7 +27,7 @@
   {
     "PA classification": "Aerospace & Defense",
     "Sector/Area": "Other",
-    "Sub-Sector": ""
+    "Sub-Sector": "Other"
   },
   {
     "PA classification": "Aerospace & Defense",
@@ -62,7 +62,7 @@
   {
     "PA classification": "Agriculture",
     "Sector/Area": "Crop Production",
-    "Sub-Sector": ""
+    "Sub-Sector": "Other"
   },
   {
     "PA classification": "Agriculture",
@@ -87,32 +87,32 @@
   {
     "PA classification": "Agriculture",
     "Sector/Area": "Other",
-    "Sub-Sector": ""
+    "Sub-Sector": "Other"
   },
   {
     "PA classification": "Climate & Sustainability",
     "Sector/Area": "Carbon Capture and Storage",
-    "Sub-Sector": ""
+    "Sub-Sector": "Other"
   },
   {
     "PA classification": "Climate & Sustainability",
     "Sector/Area": "Circular Economy Waste & Recycling",
-    "Sub-Sector": ""
+    "Sub-Sector": "Other"
   },
   {
     "PA classification": "Climate & Sustainability",
     "Sector/Area": "Climate Accounting and Target Setting",
-    "Sub-Sector": ""
+    "Sub-Sector": "Other"
   },
   {
     "PA classification": "Climate & Sustainability",
     "Sector/Area": "Climate Policy",
-    "Sub-Sector": ""
+    "Sub-Sector": "Other"
   },
   {
     "PA classification": "Climate & Sustainability",
     "Sector/Area": "Climate Risk Adaptation & Resilience",
-    "Sub-Sector": ""
+    "Sub-Sector": "Other"
   },
   {
     "PA classification": "Climate & Sustainability",
@@ -137,37 +137,37 @@
   {
     "PA classification": "Climate & Sustainability",
     "Sector/Area": "ESG Org & Governance and Operating Model",
-    "Sub-Sector": ""
+    "Sub-Sector": "Other"
   },
   {
     "PA classification": "Climate & Sustainability",
     "Sector/Area": "ESG Strategy & Reporting",
-    "Sub-Sector": ""
+    "Sub-Sector": "Other"
   },
   {
     "PA classification": "Climate & Sustainability",
     "Sector/Area": "ESG Valuation",
-    "Sub-Sector": ""
+    "Sub-Sector": "Other"
   },
   {
     "PA classification": "Climate & Sustainability",
     "Sector/Area": "Net Zero, Climate strategy",
-    "Sub-Sector": ""
+    "Sub-Sector": "Other"
   },
   {
     "PA classification": "Climate & Sustainability",
     "Sector/Area": "Other",
-    "Sub-Sector": ""
+    "Sub-Sector": "Other"
   },
   {
     "PA classification": "Climate & Sustainability",
     "Sector/Area": "Renewable Energy Technologies",
-    "Sub-Sector": ""
+    "Sub-Sector": "Other"
   },
   {
     "PA classification": "Climate & Sustainability",
     "Sector/Area": "Sustainable Agriculture",
-    "Sub-Sector": ""
+    "Sub-Sector": "Other"
   },
   {
     "PA classification": "Consumer Goods & Retail",
@@ -282,7 +282,7 @@
   {
     "PA classification": "Consumer Goods & Retail",
     "Sector/Area": "Other",
-    "Sub-Sector": ""
+    "Sub-Sector": "Other"
   },
   {
     "PA classification": "Consumer Goods & Retail",
@@ -337,7 +337,7 @@
   {
     "PA classification": "Corporate Finance Strategy",
     "Sector/Area": "Other",
-    "Sub-Sector": ""
+    "Sub-Sector": "Other"
   },
   {
     "PA classification": "Corporate Finance Strategy",
@@ -397,7 +397,7 @@
   {
     "PA classification": "Energy & Utilities",
     "Sector/Area": "Energy Policy",
-    "Sub-Sector": ""
+    "Sub-Sector": "Other"
   },
   {
     "PA classification": "Energy & Utilities",
@@ -407,7 +407,7 @@
   {
     "PA classification": "Energy & Utilities",
     "Sector/Area": "Non-Renewable Energy",
-    "Sub-Sector": ""
+    "Sub-Sector": "Other"
   },
   {
     "PA classification": "Energy & Utilities",
@@ -427,7 +427,7 @@
   {
     "PA classification": "Energy & Utilities",
     "Sector/Area": "Other",
-    "Sub-Sector": ""
+    "Sub-Sector": "Other"
   },
   {
     "PA classification": "Energy & Utilities",
@@ -472,7 +472,7 @@
   {
     "PA classification": "Banking & Financial Services",
     "Sector/Area": "Asset management",
-    "Sub-Sector": ""
+    "Sub-Sector": "Other"
   },
   {
     "PA classification": "Banking & Financial Services",
@@ -497,17 +497,17 @@
   {
     "PA classification": "Banking & Financial Services",
     "Sector/Area": "Leasing and Factoring",
-    "Sub-Sector": ""
+    "Sub-Sector": "Other"
   },
   {
     "PA classification": "Banking & Financial Services",
     "Sector/Area": "Microfinance Institutions",
-    "Sub-Sector": ""
+    "Sub-Sector": "Other"
   },
   {
     "PA classification": "Banking & Financial Services",
     "Sector/Area": "Other",
-    "Sub-Sector": ""
+    "Sub-Sector": "Other"
   },
   {
     "PA classification": "Banking & Financial Services",
@@ -532,7 +532,7 @@
   {
     "PA classification": "Banking & Financial Services",
     "Sector/Area": "Wealth Management",
-    "Sub-Sector": ""
+    "Sub-Sector": "Other"
   },
   {
     "PA classification": "Healthcare",
@@ -592,7 +592,7 @@
   {
     "PA classification": "Healthcare",
     "Sector/Area": "Other",
-    "Sub-Sector": ""
+    "Sub-Sector": "Other"
   },
   {
     "PA classification": "Healthcare",
@@ -637,7 +637,7 @@
   {
     "PA classification": "Automotive",
     "Sector/Area": "Other",
-    "Sub-Sector": ""
+    "Sub-Sector": "Other"
   },
   {
     "PA classification": "Automotive",
@@ -667,7 +667,7 @@
   {
     "PA classification": "Chemicals",
     "Sector/Area": "Agrochemicals",
-    "Sub-Sector": ""
+    "Sub-Sector": "Other"
   },
   {
     "PA classification": "Chemicals",
@@ -677,17 +677,17 @@
   {
     "PA classification": "Chemicals",
     "Sector/Area": "Other",
-    "Sub-Sector": ""
+    "Sub-Sector": "Other"
   },
   {
     "PA classification": "Chemicals",
     "Sector/Area": "Petrochemicals",
-    "Sub-Sector": ""
+    "Sub-Sector": "Other"
   },
   {
     "PA classification": "Chemicals",
     "Sector/Area": "Specialty Chemicals",
-    "Sub-Sector": ""
+    "Sub-Sector": "Other"
   },
   {
     "PA classification": "Construction & Engineering",
@@ -732,57 +732,57 @@
   {
     "PA classification": "Construction & Engineering",
     "Sector/Area": "Other",
-    "Sub-Sector": ""
+    "Sub-Sector": "Other"
   },
   {
     "PA classification": "Manufacturing",
     "Sector/Area": "Electronics and Electrical Equipment",
-    "Sub-Sector": ""
+    "Sub-Sector": "Other"
   },
   {
     "PA classification": "Manufacturing",
     "Sector/Area": "Industrial Machinery",
-    "Sub-Sector": ""
+    "Sub-Sector": "Other"
   },
   {
     "PA classification": "Manufacturing",
     "Sector/Area": "Other",
-    "Sub-Sector": ""
+    "Sub-Sector": "Other"
   },
   {
     "PA classification": "Manufacturing",
     "Sector/Area": "Shipbuilding",
-    "Sub-Sector": ""
+    "Sub-Sector": "Other"
   },
   {
     "PA classification": "Manufacturing",
     "Sector/Area": "Steel",
-    "Sub-Sector": ""
+    "Sub-Sector": "Other"
   },
   {
     "PA classification": "Metals & Mining",
     "Sector/Area": "Industrial Metals",
-    "Sub-Sector": ""
+    "Sub-Sector": "Other"
   },
   {
     "PA classification": "Metals & Mining",
     "Sector/Area": "Minerals and Aggregates",
-    "Sub-Sector": ""
+    "Sub-Sector": "Other"
   },
   {
     "PA classification": "Metals & Mining",
     "Sector/Area": "Mining Operations",
-    "Sub-Sector": ""
+    "Sub-Sector": "Other"
   },
   {
     "PA classification": "Metals & Mining",
     "Sector/Area": "Other",
-    "Sub-Sector": ""
+    "Sub-Sector": "Other"
   },
   {
     "PA classification": "Metals & Mining",
     "Sector/Area": "Precious Metals",
-    "Sub-Sector": ""
+    "Sub-Sector": "Other"
   },
   {
     "PA classification": "Textiles",
@@ -797,12 +797,12 @@
   {
     "PA classification": "Textiles",
     "Sector/Area": "Home Textiles",
-    "Sub-Sector": ""
+    "Sub-Sector": "Other"
   },
   {
     "PA classification": "Textiles",
     "Sector/Area": "Other",
-    "Sub-Sector": ""
+    "Sub-Sector": "Other"
   },
   {
     "PA classification": "Transportation & Logistics",
@@ -822,7 +822,7 @@
   {
     "PA classification": "Transportation & Logistics",
     "Sector/Area": "Other",
-    "Sub-Sector": ""
+    "Sub-Sector": "Other"
   },
   {
     "PA classification": "Transportation & Logistics",
@@ -897,7 +897,7 @@
   {
     "PA classification": "Insurance",
     "Sector/Area": "InsureTech",
-    "Sub-Sector": ""
+    "Sub-Sector": "Other"
   },
   {
     "PA classification": "Insurance",
@@ -997,17 +997,17 @@
   {
     "PA classification": "Insurance",
     "Sector/Area": "Other",
-    "Sub-Sector": ""
+    "Sub-Sector": "Other"
   },
   {
     "PA classification": "Insurance",
     "Sector/Area": "Reinsurance",
-    "Sub-Sector": ""
+    "Sub-Sector": "Other"
   },
   {
     "PA classification": "Insurance",
     "Sector/Area": "Risk and Regulation",
-    "Sub-Sector": ""
+    "Sub-Sector": "Other"
   },
   {
     "PA classification": "Human Resources & Workforce Mgmt",
@@ -1017,7 +1017,7 @@
   {
     "PA classification": "Human Resources & Workforce Mgmt",
     "Sector/Area": "Other",
-    "Sub-Sector": ""
+    "Sub-Sector": "Other"
   },
   {
     "PA classification": "Human Resources & Workforce Mgmt",
@@ -1037,7 +1037,7 @@
   {
     "PA classification": "Legal & Compliance",
     "Sector/Area": "Other",
-    "Sub-Sector": ""
+    "Sub-Sector": "Other"
   },
   {
     "PA classification": "Macroeconomics",
@@ -1077,7 +1077,7 @@
   {
     "PA classification": "Macroeconomics",
     "Sector/Area": "Fiscal and Monetary Policy",
-    "Sub-Sector": ""
+    "Sub-Sector": "Other"
   },
   {
     "PA classification": "Macroeconomics",
@@ -1102,12 +1102,12 @@
   {
     "PA classification": "Macroeconomics",
     "Sector/Area": "Other",
-    "Sub-Sector": ""
+    "Sub-Sector": "Other"
   },
   {
     "PA classification": "Macroeconomics",
     "Sector/Area": "Demographics & Population",
-    "Sub-Sector": ""
+    "Sub-Sector": "Other"
   },
   {
     "PA classification": "Macroeconomics",
@@ -1172,7 +1172,7 @@
   {
     "PA classification": "Public Sector & Government",
     "Sector/Area": "Other",
-    "Sub-Sector": ""
+    "Sub-Sector": "Other"
   },
   {
     "PA classification": "Public Sector & Government",
@@ -1222,7 +1222,7 @@
   {
     "PA classification": "Real Estate",
     "Sector/Area": "Other",
-    "Sub-Sector": ""
+    "Sub-Sector": "Other"
   },
   {
     "PA classification": "Real Estate",
@@ -1442,7 +1442,7 @@
   {
     "PA classification": "Social Impact",
     "Sector/Area": "Other",
-    "Sub-Sector": ""
+    "Sub-Sector": "Other"
   },
   {
     "PA classification": "Information Technology",
@@ -1527,7 +1527,7 @@
   {
     "PA classification": "Information Technology",
     "Sector/Area": "Other",
-    "Sub-Sector": ""
+    "Sub-Sector": "Other"
   },
   {
     "PA classification": "Information Technology",
@@ -1612,7 +1612,7 @@
   {
     "PA classification": "Media & Entertainment",
     "Sector/Area": "Other",
-    "Sub-Sector": ""
+    "Sub-Sector": "Other"
   },
   {
     "PA classification": "Media & Entertainment",
@@ -1637,7 +1637,7 @@
   {
     "PA classification": "Telecommunications",
     "Sector/Area": "Other",
-    "Sub-Sector": ""
+    "Sub-Sector": "Other"
   },
   {
     "PA classification": "Telecommunications",

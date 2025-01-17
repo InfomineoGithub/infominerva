@@ -137,14 +137,16 @@ function DataValidationPage({ user, darkMode, toggleDarkMode }) {
     const indexOfFirstEntry = indexOfLastEntry - entriesPerPage;
     const currentEntries = filteredEntries.slice(indexOfFirstEntry, indexOfLastEntry);
     const totalPages = Math.ceil(filteredEntries.length / entriesPerPage);
-
     const renderCell = (entry, column) => {
         const key = `${entry.id}-${column}`;
         const value = entry[column] || '';
         const isExpanded = expandedCells[key];
         const needsExpansion = String(value).length > 100;
-
-        if (editMode && editedEntry?.id === entry.id) {
+    
+        // Check if this specific entry is being edited
+        const isEditing = editMode && editedEntry && editedEntry.id === entry.id;
+    
+        if (isEditing) {
             return (
                 <input
                     type="text"
@@ -158,7 +160,7 @@ function DataValidationPage({ user, darkMode, toggleDarkMode }) {
                 />
             );
         }
-
+    
         if (needsExpansion) {
             return (
                 <div className="relative">
@@ -180,7 +182,7 @@ function DataValidationPage({ user, darkMode, toggleDarkMode }) {
                 </div>
             );
         }
-
+    
         return value;
     };
 

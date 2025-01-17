@@ -98,11 +98,20 @@ async def get_all_users():
 @app.get("/get_pending_entries")
 async def get_pending_entries():
     global df
-    # Get only pending entries, include index as id
-    pending_entries = df[df['Status'] == 'pending'].reset_index().replace({pd.NA: None, float('nan'): None})
-    # Convert index to 'id' column
-    pending_entries = pending_entries.rename(columns={'index': 'id'})
-    return {"entries": pending_entries.to_dict('records')}
+    # Get only pending entries
+    pending_mask = df['Status'] == 'pending'
+    # Store the original index before filtering
+    df['temp_id'] = df.index
+    pending_entries = df[pending_mask].replace({pd.NA: None, float('nan'): None})
+    # Convert to dict and ensure id is included
+    entries = pending_entries.to_dict('records')
+    # Map the temp_id to id in each record
+    for entry in entries:
+        entry['id'] = entry['temp_id']
+    # Remove temp_id column from df
+    df = df.drop('temp_id', axis=1)
+    return {"entries": entries}
+
 
 @app.post("/update_entry")
 async def update_entry(data: dict):
@@ -121,34 +130,56 @@ async def update_entry(data: dict):
     except Exception as e:
         return {"error": str(e)}, 400
 
+
 @app.post("/validate_entry")
 async def validate_entry(data: dict):
     global df
     entry_id = data.get('id')
     
     try:
-        # Convert entry_id to integer since it comes as string from JSON
-        entry_id = int(entry_id)
         # Update status to approved
-        df.loc[entry_id, 'Status'] = 'approved'
+        df.loc[int(entry_id), 'Status'] = 'approved'
         df.to_csv("Database.csv", index=False, encoding='latin-1')
         reload_database()
         return {"message": "Entry validated successfully"}
     except Exception as e:
+        print(f"Error in validate_entry: {str(e)}")  # Debug print
         return {"error": str(e)}, 400
 
 @app.delete("/delete_entry/{entry_id}")
 async def delete_entry(entry_id: int):
     global df
     try:
-        # Drop the row by index
+        # Drop the row
         df = df.drop(index=int(entry_id))
         df.to_csv("Database.csv", index=False, encoding='latin-1')
         reload_database()
         return {"message": "Entry deleted successfully"}
     except Exception as e:
+        print(f"Error in delete_entry: {str(e)}")  # Debug print
         return {"error": str(e)}, 400
+
+@app.post("/update_entry")
+async def update_entry(data: dict):
+    global df
+    entry_id = data.get('id')
+    updated_data = data.get('data')
     
+    try:
+        # Remove id from updated_data if it exists
+        if 'id' in updated_data:
+            del updated_data['id']
+            
+        # Update the entry
+        for column, value in updated_data.items():
+            df.loc[int(entry_id), column] = value
+            
+        df.to_csv("Database.csv", index=False, encoding='latin-1')
+        reload_database()
+        return {"message": "Entry updated successfully"}
+    except Exception as e:
+        print(f"Error in update_entry: {str(e)}")  # Debug print
+        return {"error": str(e)}, 400    
 
 ####################### END OF DATA VALIDATION ############################
 
