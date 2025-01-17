@@ -5,8 +5,9 @@ import { auth } from './firebase';
 import Login from './components/Login';
 import SearchPage from './components/SearchPage';
 import AddSourcePage from './components/AddSourcePage';
-import DataValidationPage from './components/DataValidation'; // You'll create this
+import DataValidationPage from './components/DataValidation'; 
 import UserManagementPage from './components/UserManagement';
+import Leaderboard from './components/Leaderboard';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -64,6 +65,10 @@ function App() {
             )
           }
         />
+        <Route
+    path="/leaderboard"
+    element={user ? <Leaderboard darkMode={darkMode} /> : <Navigate to="/login" />}
+/>
          <Route
           path="/UserManagement"
           element={
@@ -76,6 +81,7 @@ function App() {
         />
         <Route path="/" element={<Navigate to={user ? "/search" : "/login"} />} />
       </Routes>
+      
     </Router>
   );
 }

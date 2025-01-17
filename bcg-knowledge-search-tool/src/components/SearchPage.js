@@ -4,6 +4,7 @@ import { signOut } from 'firebase/auth';
 import { auth } from '../firebase';
 import { Link } from 'react-router-dom';
 import { ClipboardCheck, Users } from 'lucide-react';
+import { Crown } from 'lucide-react';
 
 
 function SearchPage({ user, darkMode, toggleDarkMode }) {
@@ -119,7 +120,7 @@ function SearchPage({ user, darkMode, toggleDarkMode }) {
 
   return (
     <div className={`min-h-screen ${darkMode ? 'bg-gray-900 text-white' : 'bg-gray-100'} p-8`}>
-        <div className={`max-w-6xl mx-auto ${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg shadow-md p-6 transition-colors duration-300`}>
+        <div className={`max-w-8xl mx-auto ${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg shadow-md p-6 transition-colors duration-300`}>
         <header className="flex justify-between items-center mb-6">
         <div className="flex items-center">
         <img 
@@ -128,25 +129,28 @@ function SearchPage({ user, darkMode, toggleDarkMode }) {
             className="h-14"  // Adjust height as needed
         />
         </div>
-        <div className="flex items-center">
-                {localStorage.getItem('userRole') === 'admin' && (
-                    <>
-                        <Link to="/validate-data" className={`mr-4 flex items-center ${darkMode ? 'text-sky-400 hover:text-sky-300' : 'text-sky-600 hover:text-sky-700'}`}>
-                            <ClipboardCheck className="h-5 w-5 mr-2" />
-                            Validate Data
-                        </Link>
-                        <Link to="/UserManagement" className={`mr-4 flex items-center ${darkMode ? 'text-sky-400 hover:text-sky-300' : 'text-sky-600 hover:text-sky-700'}`}>
-                            <Users className="h-5 w-5 mr-2" />
-                            Manage Users
-                        </Link>
-                    </>
-                )}
+        <div className="flex items-center space-x-6">
+        {localStorage.getItem('userRole') === 'admin' && (
+        <>
+            <Link to="/validate-data" className={`flex items-center ${darkMode ? 'text-sky-400 hover:text-sky-300' : 'text-sky-600 hover:text-sky-700'}`}>
+                <ClipboardCheck className="h-5 w-5 mr-2" />
+                Validate Data
+            </Link>
+            <Link to="/UserManagement" className={`flex items-center ${darkMode ? 'text-sky-400 hover:text-sky-300' : 'text-sky-600 hover:text-sky-700'}`}>
+                <Users className="h-5 w-5 mr-2" />
+                Manage Users
+            </Link>
+        </>
+    )}
                                 
-                <Link to="/add-source" className={`mr-4 flex items-center ${darkMode ? 'text-sky-400 hover:text-sky-300' : 'text-sky-600 hover:text-sky-700'}`}>
-                            <PlusCircle className="h-5 w-5 mr-2" />
-                            Add Source
-                        </Link>
-
+                                <Link to="/add-source" className={`flex items-center ${darkMode ? 'text-sky-400 hover:text-sky-300' : 'text-sky-600 hover:text-sky-700'}`}>
+        <PlusCircle className="h-5 w-5 mr-2" />
+        Add Source
+    </Link>
+    <Link to="/leaderboard" className={`flex items-center ${darkMode ? 'text-sky-400 hover:text-sky-300' : 'text-sky-600 hover:text-sky-700'}`}>
+        <Crown className="h-5 w-5 mr-2" />
+        Leaderboard
+    </Link>
                     
                     <button 
                         onClick={toggleDarkMode} 

@@ -93,6 +93,38 @@ async def get_all_users():
 ####################### END OF USER AUTHENTICATION ############################
 
 
+
+############################# LEADERBOARD ####################################
+@app.get("/get_leaderboard")
+async def get_leaderboard():
+    global df
+    
+    # Create leaderboard data
+    leaderboard = df.groupby('Submitter_email').agg({
+        'Submitter_email': 'count',  # Total contributions
+        'Expert opinion': lambda x: x.notna().sum()  # Count of non-empty expert opinions
+    }).rename(columns={
+        'Submitter_email': 'total_contributions',
+        'Expert opinion': 'expert_opinions'
+    })
+    
+    # Process email to name
+    leaderboard = leaderboard.reset_index()
+    leaderboard['full_name'] = leaderboard['Submitter_email'].apply(lambda x: 
+        ' '.join(x.split('@')[0].split('.'))
+        .title()  # Capitalize first letter of each word
+    )
+    
+    # Sort by total contributions descending
+    leaderboard = leaderboard.sort_values('total_contributions', ascending=False)
+    
+    # Convert to dict format for JSON response
+    leaderboard_dict = leaderboard.to_dict('records')
+    
+    return {"leaderboard": leaderboard_dict}
+############################# END OF LEADERBOARD ####################################
+
+
 ####################### DATA VALIDATION ############################
 
 @app.get("/get_pending_entries")
