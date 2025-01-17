@@ -252,36 +252,37 @@ function SearchPage({ user, darkMode, toggleDarkMode }) {
                 </div>
 
                 {showHelp ? (
-                    <div className="w-1/4 pl-6">
-                        <div className={`${darkMode ? 'bg-yellow-900' : 'bg-yellow-100'} p-4 rounded-lg`}>
-                            <div className="flex justify-between items-center mb-2">
-                                <h3 className={`text-lg font-semibold ${darkMode ? 'text-yellow-200' : 'text-yellow-800'}`}>Search Guide</h3>
-                                <button onClick={() => setShowHelp(false)} className={`text-sm ${darkMode ? 'text-yellow-200 hover:text-yellow-100' : 'text-yellow-700 hover:text-yellow-900'}`}>
-                                    Hide
-                                </button>
-                            </div>
-                            <ul className={`text-sm space-y-2 ${darkMode ? 'text-yellow-100' : 'text-yellow-800'}`}>
-                                <li><strong>Default Search:</strong> Space-separated terms use "OR" logic. e.g. "car international sales" will return all results containing "car" OR "international" OR "sales".</li>
-                                <li><strong>Grouped Terms:</strong> Use parentheses for multi-word phrases, e.g., "(market analysis) trends" will search for "market analysis" as a phrase OR "trends".</li>
-                                <li><strong>AND Operator:</strong> Use "AND" between terms for stricter searches, e.g., "automotive AND production sales" will return results with both "car" AND "production", OR "sales".</li>
-                            </ul>
-                            <h4 className={`text-sm font-semibold mt-4 ${darkMode ? 'text-yellow-200' : 'text-yellow-800'}`}>Upcoming Features:</h4>
-                            <ul className={`text-sm ${darkMode ? 'text-yellow-100' : 'text-yellow-800'}`}>
-                                <li>- Admin dashboard for validating data submissions</li>
-                                <li>- Search filters (by category, date, etc.)</li>
-                                <li>- User leaderboard</li>
-                            </ul>
-                        </div>
-                    </div>
-                ) : (
-                    <button 
-                        onClick={() => setShowHelp(true)} 
-                        className={`ml-4 flex items-center ${darkMode ? 'text-yellow-400 hover:text-yellow-300' : 'text-yellow-600 hover:text-yellow-700'}`}
-                    >
-                        <HelpCircle className="h-5 w-5 mr-2" />
-                        Show Search Guide
-                    </button>
-                )}
+    <div className="w-1/4 pl-6">
+        <div className={`${darkMode ? 'bg-yellow-900' : 'bg-yellow-100'} p-4 rounded-lg`}>
+            <div className="flex justify-between items-center mb-2">
+                <h3 className={`text-lg font-semibold ${darkMode ? 'text-yellow-200' : 'text-yellow-800'}`}>Search Guide</h3>
+                <button onClick={() => setShowHelp(false)} className={`text-sm ${darkMode ? 'text-yellow-200 hover:text-yellow-100' : 'text-yellow-700 hover:text-yellow-900'}`}>
+                    Hide
+                </button>
+            </div>
+            <ul className={`text-sm space-y-2 ${darkMode ? 'text-yellow-100' : 'text-yellow-800'}`}>
+                <li><strong>Default Search:</strong> Words with spaces are treated as phrases. e.g. "market analysis" will search for that exact phrase.</li>
+                <li><strong>OR Operator:</strong> Use "OR" between terms to find either. e.g., "internet OR penetration" will find results with either term.</li>
+                <li><strong>AND Operator:</strong> Use "AND" for multiple required terms. e.g., "market analysis AND trends" will find results containing both.</li>
+                <li><strong>Combined Search:</strong> Mix operators for complex searches. e.g., "financial data AND (market share OR penetration)" will find entries with "financial data" and either "market share" or "penetration".</li>
+            </ul>
+            <h4 className={`text-sm font-semibold mt-4 ${darkMode ? 'text-yellow-200' : 'text-yellow-800'}`}>Upcoming Features:</h4>
+            <ul className={`text-sm ${darkMode ? 'text-yellow-100' : 'text-yellow-800'}`}>
+                <li>- Search filters (by category, date, etc.)</li>
+                <li>- Advanced sorting options</li>
+                <li>- Search history and saved searches</li>
+            </ul>
+        </div>
+    </div>
+) : (
+    <button 
+        onClick={() => setShowHelp(true)} 
+        className={`ml-4 flex items-center ${darkMode ? 'text-yellow-400 hover:text-yellow-300' : 'text-yellow-600 hover:text-yellow-700'}`}
+    >
+        <HelpCircle className="h-5 w-5 mr-2" />
+        Show Search Guide
+    </button>
+)}
             </div>
         </div>
     </div>
