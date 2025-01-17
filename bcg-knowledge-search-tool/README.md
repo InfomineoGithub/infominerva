@@ -26,7 +26,7 @@ The infominerva Tool is a powerful, web-based application designed to streamline
 
 ### Backend
 - **Framework**: FastAPI
-- **Database**: Database.csv handed from BCG internal team
+- **Database**: "Database.csv" handed from BCG internal team, to be updated to proper pgdb
 - **Key Libraries**: Listed in `requirements.txt`
 
 ### Frontend
