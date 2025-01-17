@@ -12,7 +12,9 @@ const Leaderboard = ({ darkMode }) => {
 
     const fetchLeaderboard = async () => {
         try {
-            const response = await fetch('http://localhost:8000/get_leaderboard');
+            const apiUrl = process.env.REACT_APP_URL;
+            const response = await fetch(`${apiUrl}/get_leaderboard`);
+            // const response = await fetch('http://localhost:8000/get_leaderboard');
             const data = await response.json();
             setLeaderboard(data.leaderboard);
             setLoading(false);

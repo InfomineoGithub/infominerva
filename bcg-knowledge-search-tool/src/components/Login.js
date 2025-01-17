@@ -15,9 +15,8 @@ function Login() {
 
       // Get user role from backend
       const apiUrl = process.env.REACT_APP_URL;
-      // const response = await fetch(`${apiUrl}/get_user_role?email=${encodeURIComponent(email)}`);
-      // use local host 8000 for now
-      const response = await fetch(`http://localhost:8000/get_user_role?email=${encodeURIComponent(email)}`);
+      const response = await fetch(`${apiUrl}/get_user_role?email=${encodeURIComponent(email)}`);
+      // const response = await fetch(`http://localhost:8000/get_user_role?email=${encodeURIComponent(email)}`);
       const userData = await response.json();
       
       // Store role in localStorage for easy access

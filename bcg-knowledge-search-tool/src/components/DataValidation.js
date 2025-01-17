@@ -31,7 +31,9 @@ function DataValidationPage({ user, darkMode, toggleDarkMode }) {
 
     const fetchEntries = async () => {
         try {
-            const response = await fetch('http://localhost:8000/get_pending_entries');
+            const apiUrl = process.env.REACT_APP_URL;
+            const response = await fetch(`${apiUrl}/get_pending_entries`);
+            // const response = await fetch('http://localhost:8000/get_pending_entries');
             const data = await response.json();
             setEntries(data.entries || []);
             setLoading(false);
@@ -56,7 +58,9 @@ function DataValidationPage({ user, darkMode, toggleDarkMode }) {
     const handleUpdate = async () => {
         setSaveStatus('saving');
         try {
-            await fetch('http://localhost:8000/update_entry', {
+            const apiUrl = process.env.REACT_APP_URL;
+            await fetch(`${apiUrl}/update_entry`, {
+            // await fetch('http://localhost:8000/update_entry', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -80,7 +84,9 @@ function DataValidationPage({ user, darkMode, toggleDarkMode }) {
     const handleValidate = async (entryId) => {
         try {
             console.log('Validating entry:', entryId);
-            const response = await fetch('http://localhost:8000/validate_entry', {
+            const apiUrl = process.env.REACT_APP_URL;
+            const response = await fetch(`${apiUrl}/validate_entry`, {
+            // const response = await fetch('http://localhost:8000/validate_entry', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -100,7 +106,9 @@ function DataValidationPage({ user, darkMode, toggleDarkMode }) {
     const handleReject = async (entryId) => {
         try {
             console.log('Rejecting entry:', entryId);
-            const response = await fetch(`http://localhost:8000/delete_entry/${entryId}`, {
+            const apiUrl = process.env.REACT_APP_URL;
+            const response = await fetch(`${apiUrl}/delete_entry/${entryId}`, {
+            // const response = await fetch(`http://localhost:8000/delete_entry/${entryId}`, {
                 method: 'DELETE',
             });
             if (!response.ok) {

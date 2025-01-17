@@ -20,9 +20,9 @@ function UserManagementPage({ user, darkMode, toggleDarkMode }) {
     const fetchUsers = async () => {
         try {
             const apiUrl = process.env.REACT_APP_URL
-            // const response = await fetch(`${apiUrl}/get_all_users`);
+            const response = await fetch(`${apiUrl}/get_all_users`);
             // local 8000
-            const response = await fetch(`http://localhost:8000/get_all_users`);
+            // const response = await fetch(`http://localhost:8000/get_all_users`);
             const data = await response.json();
             setUsers(data.users);
             setLoading(false);
@@ -43,8 +43,8 @@ function UserManagementPage({ user, darkMode, toggleDarkMode }) {
         try {
             const apiUrl = process.env.REACT_APP_URL 
             for (const user of users) {
-                // await fetch(`${apiUrl}/update_user_role`, {
-                await fetch(`http://localhost:8000/update_user_role`, {
+                await fetch(`${apiUrl}/update_user_role`, {
+                // await fetch(`http://localhost:8000/update_user_role`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

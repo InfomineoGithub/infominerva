@@ -84,8 +84,9 @@ const AddSourcePage = ({ darkMode }) => {
     
                     // Get role from backend
                     try {
-                        
-                        const response = await fetch(`http://localhost:8000/get_user_role?email=${encodeURIComponent(email)}`);
+                        const apiUrl = process.env.REACT_APP_URL;
+                        const response = await fetch(`${apiUrl}/get_user_role?email=${encodeURIComponent(email)}`);
+                        // const response = await fetch(`http://localhost:8000/get_user_role?email=${encodeURIComponent(email)}`);
                         const data = await response.json();
                         setCurrentUserRole(data.role);
                         setFormData(prev => ({
@@ -187,8 +188,8 @@ const AddSourcePage = ({ darkMode }) => {
         setLoading(true);
         try {
             const apiUrl = process.env.REACT_APP_URL;
-            // const response = await fetch(`${apiUrl}/llm?link=${encodeURIComponent(formData.Link)}`);
-            const response = await fetch(`http://localhost:8000/llm?link=${encodeURIComponent(formData.Link)}`);
+            const response = await fetch(`${apiUrl}/llm?link=${encodeURIComponent(formData.Link)}`);
+            // const response = await fetch(`http://localhost:8000/llm?link=${encodeURIComponent(formData.Link)}`);
             const data = await response.json();
             
             if (!response.ok) {
@@ -255,7 +256,9 @@ const AddSourcePage = ({ darkMode }) => {
     const confirmSubmit = async () => {
         setModalOpen(false);
         try {
-            const response = await fetch('http://localhost:8000/add_data', {
+            const apiUrl = process.env.REACT_APP_URL;
+            const response = await fetch(`${apiUrl}/add_data`, {
+            // const response = await fetch('http://localhost:8000/add_data', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
