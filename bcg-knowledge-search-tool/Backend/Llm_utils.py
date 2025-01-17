@@ -77,7 +77,7 @@ def analyze_content(content, url):
     ]
 
     response = openai.chat.completions.create(
-        model="gpt-4o-preview",
+        model="gpt-4o",
         temperature=0.1,
         messages=conversation
     )

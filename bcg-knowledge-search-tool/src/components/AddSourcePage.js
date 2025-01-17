@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { ArrowLeft, Loader } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Modal from './Modal';
+import { auth } from '../firebase';
+
+
 
 // Constants for dropdown options
 const FORM_OPTIONS = {
@@ -31,6 +34,8 @@ const AddSourcePage = ({ darkMode }) => {
     const [modalOpen, setModalOpen] = useState(false);
     const [modalContent, setModalContent] = useState({ title: '', message: '' });
     const [availablePAs, setAvailablePAs] = useState([]);
+    const [currentUserEmail, setCurrentUserEmail] = useState('');
+    const [currentUserRole, setCurrentUserRole] = useState('');
     
     // States for cascading dropdowns
     const [selectedPA, setSelectedPA] = useState('');
@@ -64,6 +69,37 @@ const AddSourcePage = ({ darkMode }) => {
         'Submitter_email': '', // Will be filled from user context
         'Submitter_role': '' // Will be filled from user context
     });
+
+        // Add new useEffect for getting user data when component mounts
+        useEffect(() => {
+            const getUserData = async () => {
+                // Get email from Firebase auth
+                const email = auth.currentUser?.email;
+                if (email) {
+                    setCurrentUserEmail(email);
+                    setFormData(prev => ({
+                        ...prev,
+                        'Submitter_email': email
+                    }));
+    
+                    // Get role from backend
+                    try {
+                        
+                        const response = await fetch(`http://localhost:8000/get_user_role?email=${encodeURIComponent(email)}`);
+                        const data = await response.json();
+                        setCurrentUserRole(data.role);
+                        setFormData(prev => ({
+                            ...prev,
+                            'Submitter_role': data.role
+                        }));
+                    } catch (error) {
+                        console.error('Error fetching user role:', error);
+                    }
+                }
+            };
+    
+            getUserData();
+        }, []); // Run once when component mounts
 
     // Fetch classifications data on mount
     useEffect(() => {
@@ -150,6 +186,8 @@ const AddSourcePage = ({ darkMode }) => {
 
         setLoading(true);
         try {
+            const apiUrl = process.env.REACT_APP_URL;
+            // const response = await fetch(`${apiUrl}/llm?link=${encodeURIComponent(formData.Link)}`);
             const response = await fetch(`http://localhost:8000/llm?link=${encodeURIComponent(formData.Link)}`);
             const data = await response.json();
             
@@ -230,7 +268,7 @@ const AddSourcePage = ({ darkMode }) => {
             if (!response.ok) {
                 throw new Error(result.detail || "Failed to add data");
             }
-
+    
             showModal("Success", "Data added successfully!");
             // Reset form
             setFormData({
@@ -256,8 +294,8 @@ const AddSourcePage = ({ darkMode }) => {
                 'Link': '',
                 'Status': 'pending',
                 'Reliability score (1-10) ': '',
-                'Submitter_email': '',
-                'Submitter_role': ''
+                'Submitter_email': currentUserEmail,
+                'Submitter_role': currentUserRole
             });
             setSelectedPA('');
             setSelectedSector('');
