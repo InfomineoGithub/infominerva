@@ -28,6 +28,12 @@ def reload_database():
     global df
     df = pd.read_csv("Database.csv", encoding='latin-1')
 
+# reload for users
+def reload_users():
+    global users_df
+    users_df = pd.read_csv("users.csv", encoding='latin-1')
+
+####################### USER AUTHENTICATION ############################
 
 @app.get("/get_user_role")
 async def get_user_role(email: str):
@@ -53,8 +59,30 @@ async def get_user_role(email: str):
     
     users_df = pd.concat([users_df, new_user], ignore_index=True)
     users_df.to_csv("users.csv", index=False)
-    
+    # Reload the database after adding new user
+    reload_users()
     return {"role": "contributor", "expert_domain": None}
+
+@app.post("/update_user_role")
+async def update_user_role(data: dict):
+    global users_df
+    target_email = data.get('target_email')
+    new_role = data.get('new_role')
+
+    # Update user role
+    users_df.loc[users_df['email'] == target_email, 'role'] = new_role
+    users_df.to_csv("users.csv", index=False)
+    reload_users()  # Reload for all sessions
+    return {"message": f"Role updated for {target_email}"}
+
+@app.get("/get_all_users")
+async def get_all_users():
+    global users_df
+    users_list = users_df.replace({pd.NA: None, float('nan'): None}).to_dict('records')
+    return {"users": users_list}
+
+
+####################### END OF USER AUTHENTICATION ############################
 
 @app.get("/search")
 async def search(query: str, sort_by: str = "relevance"):
