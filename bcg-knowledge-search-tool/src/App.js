@@ -5,7 +5,8 @@ import { auth } from './firebase';
 import Login from './components/Login';
 import SearchPage from './components/SearchPage';
 import AddSourcePage from './components/AddSourcePage';
-import DataValidationPage from './components/DataValidationPage'; // You'll create this
+import DataValidationPage from './components/DataValidation'; // You'll create this
+import UserManagementPage from './components/UserManagement';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -58,6 +59,16 @@ function App() {
           element={
             user && isAdmin ? (
               <DataValidationPage darkMode={darkMode} />
+            ) : (
+              <Navigate to="/search" />
+            )
+          }
+        />
+         <Route
+          path="/UserManagement"
+          element={
+            user && isAdmin ? (
+              <UserManagementPage darkMode={darkMode} />
             ) : (
               <Navigate to="/search" />
             )
