@@ -28,18 +28,18 @@ Validation_columns = ['PA classification', 'Sector/Area', 'Sub-Sector', 'Source 
        'Submitter_role', 'Status', 'Reliability score (1-10) ', 'Link']
 
 # Load the database
-df = pd.read_csv("Database.csv", encoding='latin-1')
+df = pd.read_csv("Database.csv", encoding='cp1252')
 
-users_df = pd.read_csv("users.csv", encoding='latin-1')
+users_df = pd.read_csv("users.csv", encoding='cp1252')
 
 def reload_database():
     global df
-    df = pd.read_csv("Database.csv", encoding='latin-1')
+    df = pd.read_csv("Database.csv", encoding='cp1252')
 
 # reload for users
 def reload_users():
     global users_df
-    users_df = pd.read_csv("users.csv", encoding='latin-1')
+    users_df = pd.read_csv("users.csv", encoding='cp1252')
 
 ####################### USER AUTHENTICATION ############################
 
@@ -156,7 +156,7 @@ async def update_entry(data: dict):
         for column, value in updated_data.items():
             df.loc[entry_id, column] = value
             
-        df.to_csv("Database.csv", index=False, encoding='latin-1')
+        df.to_csv("Database.csv", index=False, encoding='cp1252')
         reload_database()  # Reload for all sessions
         return {"message": "Entry updated successfully"}
     except Exception as e:
@@ -171,7 +171,7 @@ async def validate_entry(data: dict):
     try:
         # Update status to approved
         df.loc[int(entry_id), 'Status'] = 'approved'
-        df.to_csv("Database.csv", index=False, encoding='latin-1')
+        df.to_csv("Database.csv", index=False, encoding='cp1252')
         reload_database()
         return {"message": "Entry validated successfully"}
     except Exception as e:
@@ -184,7 +184,7 @@ async def delete_entry(entry_id: int):
     try:
         # Drop the row
         df = df.drop(index=int(entry_id))
-        df.to_csv("Database.csv", index=False, encoding='latin-1')
+        df.to_csv("Database.csv", index=False, encoding='cp1252')
         reload_database()
         return {"message": "Entry deleted successfully"}
     except Exception as e:
@@ -206,7 +206,7 @@ async def update_entry(data: dict):
         for column, value in updated_data.items():
             df.loc[int(entry_id), column] = value
             
-        df.to_csv("Database.csv", index=False, encoding='latin-1')
+        df.to_csv("Database.csv", index=False, encoding='cp1252')
         reload_database()
         return {"message": "Entry updated successfully"}
     except Exception as e:
@@ -217,6 +217,7 @@ async def update_entry(data: dict):
 
 @app.get("/search")
 async def search(query: str, sort_by: str = "relevance"):
+    reload_database()  # Reload the database before searching
     results = advanced_search(df, query, search_columns)
     if sort_by == "relevance":
         results.sort(key=lambda x: len(x['words_found']), reverse=True)
