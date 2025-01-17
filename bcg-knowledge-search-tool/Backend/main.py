@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import pandas as pd
 from search_utils import advanced_search
 from Llm_utils import process_link
+import os
 
 
 app = FastAPI()
@@ -19,11 +20,41 @@ app.add_middleware(
 search_columns = ["Tags", "Sector/Area", "Sub-Sector", "Description", "Source name"]
 
 # Load the database
-df = pd.read_csv("Database.csv")
+df = pd.read_csv("Database.csv", encoding='latin-1')
+
+users_df = pd.read_csv("users.csv", encoding='latin-1')
 
 def reload_database():
     global df
-    df = pd.read_csv("Database.csv")
+    df = pd.read_csv("Database.csv", encoding='latin-1')
+
+
+@app.get("/get_user_role")
+async def get_user_role(email: str):
+    global users_df
+    
+    # Check if user exists
+    user = users_df[users_df['email'] == email]
+    
+    if not user.empty:
+        # Convert to dict and replace NaN with None for JSON serialization
+        user_data = user.iloc[0].replace({pd.NA: None, float('nan'): None}).to_dict()
+        return {
+            "role": user_data.get('role', 'contributor'),
+            "expert_domain": user_data.get('expert_domain')
+        }
+    
+    # If user doesn't exist, create new with default role
+    new_user = pd.DataFrame([{
+        'email': email,
+        'role': 'contributor',
+        'expert_domain': None
+    }])
+    
+    users_df = pd.concat([users_df, new_user], ignore_index=True)
+    users_df.to_csv("users.csv", index=False)
+    
+    return {"role": "contributor", "expert_domain": None}
 
 @app.get("/search")
 async def search(query: str, sort_by: str = "relevance"):

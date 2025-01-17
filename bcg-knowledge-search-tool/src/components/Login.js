@@ -6,28 +6,52 @@ function Login() {
 
   const handleSignIn = async () => {
     try {
-      await signInWithGoogle();
-      // If successful, the App component will handle the redirect
+      const userCredential = await signInWithGoogle();
+      const email = userCredential.user.email;
+      
+      if (!email.endsWith('@infomineo.com')) {
+        throw new Error('Invalid domain');
+      }
+
+      // Get user role from backend
+      const apiUrl = process.env.REACT_APP_URL;
+      // const response = await fetch(`${apiUrl}/get_user_role?email=${encodeURIComponent(email)}`);
+      // use local host 8000 for now
+      const response = await fetch(`http://localhost:8000/get_user_role?email=${encodeURIComponent(email)}`);
+      const userData = await response.json();
+      
+      // Store role in localStorage for easy access
+      localStorage.setItem('userRole', userData.role);
+      localStorage.setItem('expertDomain', userData.expert_domain || '');
+
     } catch (error) {
       console.error("Error signing in with Google", error);
-      if (error.code === 'auth/popup-closed-by-user') {
+      if (error.message === 'Invalid domain') {
+        setError('Sign-in failed. Please use an @infomineo.com email address.');
+      } else if (error.code === 'auth/popup-closed-by-user') {
         setError('Sign-in was cancelled.');
       } else {
-        setError('Sign-in failed. Please ensure you\'re using an @infomineo.com email address.');
+        setError('Sign-in failed. Please try again.');
       }
     }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-blue-400 to-purple-500 flex items-center justify-center">
+    <div className="min-h-screen bg-gradient-to-r from-sky-400 to-blue-600 flex items-center justify-center">
       <div className="bg-white p-8 rounded-lg shadow-xl w-96">
-        <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">BCG Knowledge Search Tool</h1>
+        <div className="flex justify-center mb-6">
+          <img 
+            src={process.env.PUBLIC_URL + '/Infominerva.png'} 
+            alt="Infominerva Logo" 
+            className="h-16 object-contain"
+          />
+        </div>
         <div className="mb-6 text-center">
           <p className="text-sm text-gray-600">Sign in to access the search tool</p>
         </div>
         <button
           onClick={handleSignIn}
-          className="w-full flex items-center justify-center bg-white border border-gray-300 rounded-lg shadow-md px-4 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          className="w-full flex items-center justify-center bg-white border border-gray-300 rounded-lg shadow-md px-4 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500"
         >
           <svg className="h-5 w-5 mr-3" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>

@@ -5,26 +5,27 @@ import { auth } from './firebase';
 import Login from './components/Login';
 import SearchPage from './components/SearchPage';
 import AddSourcePage from './components/AddSourcePage';
+import DataValidationPage from './components/DataValidationPage'; // You'll create this
 
 function App() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [darkMode, setDarkMode] = useState(() => {
-    // Initialize darkMode from localStorage or default to false
     return localStorage.getItem('darkMode') === 'true';
   });
 
+  const toggleDarkMode = () => {
+    setDarkMode(prevMode => !prevMode);
+  };
+
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user && user.email.endsWith('@infomineo.com')) {
         setUser(user);
       } else if (user) {
-        signOut(auth).then(() => {
-          setUser(null);
-          alert('Access restricted to @infomineo.com email addresses only.');
-        }).catch((error) => {
-          console.error("Error signing out", error);
-        });
+        await signOut(auth);
+        setUser(null);
+        alert('Access restricted to @infomineo.com email addresses only.');
       } else {
         setUser(null);
       }
@@ -34,20 +35,11 @@ function App() {
     return () => unsubscribe();
   }, []);
 
-  useEffect(() => {
-    // Update localStorage when darkMode changes
-    localStorage.setItem('darkMode', darkMode);
-  }, [darkMode]);
-
-  const toggleDarkMode = () => {
-    setDarkMode(prevMode => !prevMode);
-  };
+  const isAdmin = localStorage.getItem('userRole') === 'admin';
 
   if (loading) {
     return <div>Loading...</div>;
   }
-
-  
 
   return (
     <Router>
@@ -62,9 +54,15 @@ function App() {
           element={user ? <AddSourcePage darkMode={darkMode} /> : <Navigate to="/login" />}
         />
         <Route
-  path="/search"
-  element={user ? <SearchPage user={user} darkMode={darkMode} toggleDarkMode={toggleDarkMode} /> : <Navigate to="/login" />}
-/>
+          path="/validate-data"
+          element={
+            user && isAdmin ? (
+              <DataValidationPage darkMode={darkMode} />
+            ) : (
+              <Navigate to="/search" />
+            )
+          }
+        />
         <Route path="/" element={<Navigate to={user ? "/search" : "/login"} />} />
       </Routes>
     </Router>

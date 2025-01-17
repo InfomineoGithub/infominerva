@@ -80,12 +80,20 @@ const AddSourcePage = ({ darkMode }) => {
         setModalOpen(false);
         try {
             const apiUrl = process.env.REACT_APP_URL;
-            const response = await fetch(`${apiUrl}/add_data`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData),
+            //const response = await fetch(`${apiUrl}/add_data`, {
+            //method: 'POST',
+            //headers: {
+            //    'Content-Type': 'application/json',
+            //},
+            //body: JSON.stringify(formData),
+            //});
+            // use localhost temporarily to test the code ; 8000 is the port number
+            const response = await fetch(`http://localhost:8000/add_data`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
             });
             const result = await response.json();
             showModal("Success", result.message);

@@ -19,8 +19,11 @@ function SearchPage({ user, darkMode, toggleDarkMode }) {
     
     try {
             const apiUrl = process.env.REACT_APP_URL;
-            console.log('Sending request to:', `${apiUrl}/search?query=${encodeURIComponent(searchQuery)}`);
-            const response = await fetch(`${apiUrl}/search?query=${encodeURIComponent(searchQuery)}`);
+            // console.log('Sending request to:', `${apiUrl}/search?query=${encodeURIComponent(searchQuery)}`);
+            // const response = await fetch(`${apiUrl}/search?query=${encodeURIComponent(searchQuery)}`);
+            // writing the fetch to localhost:8000 instead to test
+            console.log('Sending request to:', `http://localhost:8000/search?query=${encodeURIComponent(searchQuery)}`);
+            const response = await fetch(`http://localhost:8000/search?query=${encodeURIComponent(searchQuery)}`);
 
         const text = await response.text();
         console.log('Response text:', text);
