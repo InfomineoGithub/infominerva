@@ -11,7 +11,3 @@ Backend/__pycache__
 # ignore build that is in root directly
 build
 node_modules
-#ignore IDE history files
-.idea
-.vscode
-.history
