@@ -1,0 +1,88 @@
+version: "3.9"
+
+services:
+  # PostgreSQL Database Service
+  db:
+    image: postgres:17-alpine
+    container_name: infominerva_db
+    environment:
+      # These values should match your .env file
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      # Persists database data across container restarts/recreations
+      - postgres_data:/var/lib/postgresql/data
+      # Mounts the local ./init-db folder to execute init.sql on first run
+      - ./init-db:/docker-entrypoint-initdb.d
+    ports:
+      # Optional: Expose port 5432 to the host machine for direct DB access
+      - "5432:5432"
+    restart: unless-stopped
+    healthcheck:
+      # Checks if the database server is ready to accept connections
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # FastAPI Backend Service
+  backend:
+    build:
+      context: .
+      # Specifies the Dockerfile used to build this service's image
+      dockerfile: backend.Dockerfile
+    # ADD THIS LINE
+    working_dir: /app/Backend
+    env_file:
+      # Loads environment variables from the .env file (e.g., DATABASE_URL)
+      - .env
+    # CHANGE THIS LINE
+    command: [ "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--reload" ]
+    # CHANGE THIS LINE
+    ports:
+      # Maps port 8000 on the host to port 8000 in the container
+      - "8000:8000"
+    depends_on:
+      db:
+        # Ensures this service only starts after the 'db' service is healthy
+        condition: service_healthy
+    restart: unless-stopped
+    volumes:
+      # Mounts the local ./Backend directory into the container at /app/Backend
+      # This enables hot-reloading when local files change
+      - ./Backend:/app/Backend
+
+  # React Frontend Service
+  frontend:
+    build:
+      context: .
+      # Specifies the Dockerfile used to build this service's image
+      dockerfile: frontend.Dockerfile
+    env_file:
+      # Loads environment variables from the .env file (e.g., REACT_APP_URL)
+      - .env
+    environment:
+      # Sets environment specifically for the Node development server
+      NODE_ENV: development
+    # Command executed when the container starts (React development server)
+    command: npm start
+    ports:
+      # Maps port 3000 on the host to port 3000 in the container
+      - "3000:3000"
+    depends_on:
+      # Ensures this service starts after the 'backend' service (optional but good practice)
+      - backend
+    restart: unless-stopped
+    volumes:
+      # Mounts the local ./src directory into the container at /app/src
+      - ./src:/app/src
+      # Mounts the local ./public directory into the container at /app/public
+      # These enable hot-reloading for the React dev server
+      - ./public:/app/public
+      # Note: node_modules are NOT mounted; the ones installed during image build are used.
+
+# Defines the named volume used by the 'db' service for persistent storage
+volumes:
+  postgres_data:
+    driver: local
