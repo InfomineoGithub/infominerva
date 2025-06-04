@@ -21,7 +21,7 @@ env:
   FRONTEND_IMAGE_NAME: "frontend"
 
   # --- Image tag will be the Git commit SHA for uniqueness ---
-  IMAGE_TAG: ${{ github.sha }}
+  IMAGE_TAG: "${{ github.sha }}" # Using the full SHA for better uniqueness
 
   # --- Define Dockerfile paths and context ---
   DOCKER_BUILD_CONTEXT: "./bcg-knowledge-search-tool"
@@ -36,33 +36,25 @@ jobs:
     environment: infominerva
     permissions:
       contents: 'read'
-      id-token: 'write' # Required for Workload Identity Federation
+      id-token: 'write' # Required for Workload Identity Federation if you switch to it
 
     outputs: # Define outputs to pass to the deploy job
       backend_image_full_path: ${{ steps.image_paths.outputs.AR_BACKEND_IMAGE_FULL_PATH }}
       frontend_image_full_path: ${{ steps.image_paths.outputs.AR_FRONTEND_IMAGE_FULL_PATH }}
-      image_tag: ${{ env.IMAGE_TAG }}
+      image_tag: ${{ env.IMAGE_TAG }} # Pass the tag as it's defined in env
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # --- Choose ONE authentication method ---
-      # Method 1: Workload Identity Federation (Recommended)
-      # Ensure WIF is configured in GCP and GitHub Actions.
-      # - name: Authenticate to Google Cloud (Workload Identity Federation)
-      #   id: auth
-      #   uses: 'google-github-actions/auth@v2'
-      #   with:
-      #     workload_identity_provider: 'projects/YOUR_GCP_PROJECT_NUMBER/locations/global/workloadIdentityPools/YOUR_POOL_ID/providers/YOUR_PROVIDER_ID'
-      #     service_account: 'your-service-account-email@${{ env.GCP_PROJECT_ID }}.iam.gserviceaccount.com'
-
-      # Method 2: Service Account Key JSON (Ensure GCP_SA_KEY secret is set in GitHub)
       - name: Authenticate to Google Cloud (Service Account Key)
         id: auth
         uses: 'google-github-actions/auth@v2'
         with:
-          credentials_json: '${{ secrets.GCP_SA_KEY }}' # Ensure this secret is defined in GitHub repository/environment settings
+          credentials_json: '${{ secrets.GCP_SA_KEY }}'
+          # If you were using Workload Identity Federation, it would look like this:
+          # workload_identity_provider: 'projects/YOUR_PROJECT_NUMBER/locations/global/workloadIdentityPools/YOUR_POOL_ID/providers/YOUR_PROVIDER_ID'
+          # service_account: 'your-service-account-email@your-project-id.iam.gserviceaccount.com'
 
       - name: Set up Cloud SDK
         uses: 'google-github-actions/setup-gcloud@v2'
@@ -79,17 +71,25 @@ jobs:
           echo "AR_FRONTEND_IMAGE_FULL_PATH=${{ env.GCP_ARTIFACT_REGISTRY_REGION }}-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.GCP_ARTIFACT_REGISTRY_REPOSITORY }}/${{ env.FRONTEND_IMAGE_NAME }}:${{ env.IMAGE_TAG }}" >> $GITHUB_OUTPUT
 
       - name: Build, Tag, and Push Backend Image
+        env: # Make output available to this step's env context
+            AR_BACKEND_IMAGE_FULL_PATH: ${{ steps.image_paths.outputs.AR_BACKEND_IMAGE_FULL_PATH }}
         run: |
-          echo "Building backend image: ${{ steps.image_paths.outputs.AR_BACKEND_IMAGE_FULL_PATH }}"
+          echo "Building backend image: ${AR_BACKEND_IMAGE_FULL_PATH}"
           echo "Using Dockerfile: ${{ env.BACKEND_DOCKERFILE_PATH }} with context: ${{ env.DOCKER_BUILD_CONTEXT }}"
-          docker build -f ${{ env.BACKEND_DOCKERFILE_PATH }} -t backend ${{ env.DOCKER_BUILD_CONTEXT }}
-          echo "Pushing backend image..."
-          docker push backend
+          # Build and tag directly with the full Artifact Registry path
+          docker build -f "${{ env.BACKEND_DOCKERFILE_PATH }}" -t "${AR_BACKEND_IMAGE_FULL_PATH}" "${{ env.DOCKER_BUILD_CONTEXT }}"
+          
+          echo "Pushing backend image to ${AR_BACKEND_IMAGE_FULL_PATH}..."
+          docker push "${AR_BACKEND_IMAGE_FULL_PATH}"
 
       - name: Build, Tag, and Push Frontend Image
+        env: # Make output available to this step's env context
+            AR_FRONTEND_IMAGE_FULL_PATH: ${{ steps.image_paths.outputs.AR_FRONTEND_IMAGE_FULL_PATH }}
         run: |
-          echo "Building frontend image: ${{ steps.image_paths.outputs.AR_FRONTEND_IMAGE_FULL_PATH }}"
+          echo "Building frontend image: ${AR_FRONTEND_IMAGE_FULL_PATH}"
           echo "Using Dockerfile: ${{ env.FRONTEND_DOCKERFILE_PATH }} with context: ${{ env.DOCKER_BUILD_CONTEXT }}"
-          docker build -f ${{ env.FRONTEND_DOCKERFILE_PATH }} -t frontend ${{ env.DOCKER_BUILD_CONTEXT }}
-          echo "Pushing frontend image..."
-          docker push frontend
+          # Build and tag directly with the full Artifact Registry path
+          docker build -f "${{ env.FRONTEND_DOCKERFILE_PATH }}" -t "${AR_FRONTEND_IMAGE_FULL_PATH}" "${{ env.DOCKER_BUILD_CONTEXT }}"
+
+          echo "Pushing frontend image to ${AR_FRONTEND_IMAGE_FULL_PATH}..."
+          docker push "${AR_FRONTEND_IMAGE_FULL_PATH}"
