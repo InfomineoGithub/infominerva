@@ -19,9 +19,6 @@ env:
   # --- TODO: Configure these application and Helm specific variables ---
   BACKEND_IMAGE_NAME: "backend"
   FRONTEND_IMAGE_NAME: "frontend"
-  HELM_CHART_PATH: "./helm_chart"
-  HELM_RELEASE_NAME: "infominerva"
-  HELM_NAMESPACE: "infominerva"
 
   # --- Image tag will be the Git commit SHA for uniqueness ---
   IMAGE_TAG: ${{ github.sha }}
@@ -87,7 +84,7 @@ jobs:
           echo "Using Dockerfile: ${{ env.BACKEND_DOCKERFILE_PATH }} with context: ${{ env.DOCKER_BUILD_CONTEXT }}"
           docker build -f ${{ env.BACKEND_DOCKERFILE_PATH }} -t backend ${{ env.DOCKER_BUILD_CONTEXT }}
           echo "Pushing backend image..."
-          docker push ${{ steps.image_paths.outputs.AR_BACKEND_IMAGE_FULL_PATH }}
+          docker push backend
 
       - name: Build, Tag, and Push Frontend Image
         run: |
@@ -95,4 +92,4 @@ jobs:
           echo "Using Dockerfile: ${{ env.FRONTEND_DOCKERFILE_PATH }} with context: ${{ env.DOCKER_BUILD_CONTEXT }}"
           docker build -f ${{ env.FRONTEND_DOCKERFILE_PATH }} -t frontend ${{ env.DOCKER_BUILD_CONTEXT }}
           echo "Pushing frontend image..."
-          docker push ${{ steps.image_paths.outputs.AR_FRONTEND_IMAGE_FULL_PATH }}
+          docker push frontend
