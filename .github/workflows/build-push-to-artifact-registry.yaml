@@ -28,8 +28,8 @@ env:
 
   # --- Define Dockerfile paths and context ---
   DOCKER_BUILD_CONTEXT: "./bcg-knowledge-search-tool"
-  BACKEND_DOCKERFILE_PATH: "backend.Dockerfile"
-  FRONTEND_DOCKERFILE_PATH: "frontend.Dockerfile"
+  BACKEND_DOCKERFILE_PATH: "./bcg-knowledge-search-tool/backend.Dockerfile"
+  FRONTEND_DOCKERFILE_PATH: "./bcg-knowledge-search-tool/frontend.Dockerfile"
 
 
 jobs:
@@ -85,7 +85,7 @@ jobs:
         run: |
           echo "Building backend image: ${{ steps.image_paths.outputs.AR_BACKEND_IMAGE_FULL_PATH }}"
           echo "Using Dockerfile: ${{ env.BACKEND_DOCKERFILE_PATH }} with context: ${{ env.DOCKER_BUILD_CONTEXT }}"
-          docker build --target backend -f ${{ env.BACKEND_DOCKERFILE_PATH }} -t ${{ steps.image_paths.outputs.AR_BACKEND_IMAGE_FULL_PATH }} ${{ env.DOCKER_BUILD_CONTEXT }}
+          docker build --target backend -f ${{ env.BACKEND_DOCKERFILE_PATH }} -t backend ${{ env.DOCKER_BUILD_CONTEXT }}
           echo "Pushing backend image..."
           docker push ${{ steps.image_paths.outputs.AR_BACKEND_IMAGE_FULL_PATH }}
 
@@ -93,6 +93,6 @@ jobs:
         run: |
           echo "Building frontend image: ${{ steps.image_paths.outputs.AR_FRONTEND_IMAGE_FULL_PATH }}"
           echo "Using Dockerfile: ${{ env.FRONTEND_DOCKERFILE_PATH }} with context: ${{ env.DOCKER_BUILD_CONTEXT }}"
-          docker build --target frontend -f ${{ env.FRONTEND_DOCKERFILE_PATH }} -t ${{ steps.image_paths.outputs.AR_FRONTEND_IMAGE_FULL_PATH }} ${{ env.DOCKER_BUILD_CONTEXT }}
+          docker build --target frontend -f ${{ env.FRONTEND_DOCKERFILE_PATH }} -t frontend ${{ env.DOCKER_BUILD_CONTEXT }}
           echo "Pushing frontend image..."
           docker push ${{ steps.image_paths.outputs.AR_FRONTEND_IMAGE_FULL_PATH }}
