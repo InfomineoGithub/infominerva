@@ -36,8 +36,7 @@ jobs:
   build-and-push-images:
     name: Build and Push Docker Images
     runs-on: ubuntu-latest
-    # If using environment-specific secrets for GCP_SA_KEY, uncomment and set your environment name
-    # environment: infominerva
+    environment: infominerva
     permissions:
       contents: 'read'
       id-token: 'write' # Required for Workload Identity Federation
