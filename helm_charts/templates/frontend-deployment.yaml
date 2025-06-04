@@ -34,34 +34,31 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.frontend.image.repository }}:{{ .Values.frontend.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.frontend.image.pullPolicy }}
+          command: ["npm"]
+          args: ["start"] # Note: `npm start` is for development. Production React apps are usually built and served statically.
           ports:
             - name: http
               containerPort: {{ .Values.frontend.service.targetPort }}
               protocol: TCP
-          # livenessProbe:
-          #   httpGet:
-          #     path: /
-          #     port: http
-          # readinessProbe:
-          #   httpGet:
-          #     path: /
-          #     port: http
           resources:
-            {{- toYaml .Values.frontend.resources | nindent 12 }}
+            requests:
+              cpu: "100m"
+              memory: "250Mi"
+            limits:
+              cpu: "100m"
+              memory: "250Mi"
           {{- if .Values.secrets.create }}
           envFrom:
             - secretRef:
                 name: {{ include "infominerva.fullname" . }}-{{ .Values.secrets.frontend.nameSuffix }}
           {{- end }}
-          {{- if .Values.frontend.env }} # Keep this if you have other non-secret env vars
+          {{- if .Values.frontend.env }}
           env:
             {{- range .Values.frontend.env }}
             - name: {{ .name }}
               value: {{ .value | quote }}
             {{- end }}
             {{- if and .Values.ingress.enabled (not (lookup "v1" "Secret" (printf "%s" (include "infominerva.fullname" . | toString)) (printf "%s-frontend-secrets" (include "infominerva.fullname" . | toString)) )) }}
-            # This REACT_APP_API_URL is only set if Ingress is enabled AND the frontend secret doesn't already define it.
-            # This allows the secret to take precedence.
             - name: REACT_APP_API_URL
               value: "{{ if (first .Values.ingress.tls) }}https{{ else }}http{{ end }}://{{ (first .Values.ingress.hosts).host }}{{ (index (first .Values.ingress.hosts).paths 1).path }}"
             {{- end }}

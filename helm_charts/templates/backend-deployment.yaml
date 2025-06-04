@@ -34,26 +34,31 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.backend.image.repository }}:{{ .Values.backend.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.backend.image.pullPolicy }}
+          workingDir: /app/Backend # Added from docker-compose working_dir
+          command: ["uvicorn"]
+          args:
+            - "main:app"
+            - "--host"
+            - "0.0.0.0"
+            - "--port"
+            - "8000"  # From docker-compose. Ensure {{ .Values.backend.service.targetPort }} matches if they are the same logical port.
           ports:
             - name: http
-              containerPort: {{ .Values.backend.service.targetPort }}
+              containerPort: {{ .Values.backend.service.targetPort }} # Should ideally match the port in args (e.g., 8000)
               protocol: TCP
-          # livenessProbe:
-          #   httpGet:
-          #     path: /health
-          #     port: http
-          # readinessProbe:
-          #   httpGet:
-          #     path: /ready
-          #     port: http
           resources:
-            {{- toYaml .Values.backend.resources | nindent 12 }}
+            requests:
+              cpu: "100m"
+              memory: "250Mi"
+            limits:
+              cpu: "100m"
+              memory: "250Mi"
           {{- if .Values.secrets.create }}
           envFrom:
             - secretRef:
                 name: {{ include "infominerva.fullname" . }}-{{ .Values.secrets.backend.nameSuffix }}
           {{- end }}
-          {{- if .Values.backend.env }} # Keep this if you have other non-secret env vars
+          {{- if .Values.backend.env }}
           env:
             {{- range .Values.backend.env }}
             - name: {{ .name }}

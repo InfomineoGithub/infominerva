@@ -33,7 +33,7 @@ spec:
             pathType: {{ .pathType }}
             backend:
               service:
-                name: {{ include "infominerva.fullname" $ }}-{{ .service.name }} # Constructs service name like 'infominerva-frontend' or 'infominerva-backend'
+                name: {{ include "infominerva.fullname" $ }}-{{ .service.name }}
                 port:
                   number: {{ .service.port }}
           {{- end }}

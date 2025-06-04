@@ -9,7 +9,7 @@ backend:
   image:
     repository: europe-west1-docker.pkg.dev/infomineo/infominerva/backend
     pullPolicy: Always
-    tag: 
+    tag: latest
   service:
     type: ClusterIP
     port: 8000
@@ -20,7 +20,7 @@ frontend:
   image:
     repository: europe-west1-docker.pkg.dev/infomineo/infominerva/frontend
     pullPolicy: Always
-    tag: 
+    tag: latest
   service:
     type: ClusterIP
     port: 80

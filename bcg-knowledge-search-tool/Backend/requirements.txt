@@ -3,3 +3,4 @@ pandas==2.2.2
 fastapi==0.111.0
 openai
 bs4
+requests
