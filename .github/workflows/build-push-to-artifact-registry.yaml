@@ -28,8 +28,8 @@ env:
 
   # --- Define Dockerfile paths and context ---
   DOCKER_BUILD_CONTEXT: "./bcg-knowledge-search-tool"
-  BACKEND_DOCKERFILE_PATH: "./bcg-knowledge-search-tool/backend.Dockerfile"
-  FRONTEND_DOCKERFILE_PATH: "./bcg-knowledge-search-tool/frontend.Dockerfile"
+  BACKEND_DOCKERFILE_PATH: "./backend.Dockerfile"
+  FRONTEND_DOCKERFILE_PATH: "./frontend.Dockerfile"
 
 
 jobs:
