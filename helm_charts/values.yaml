@@ -7,34 +7,24 @@ replicaCount: 1
 backend:
   name: backend
   image:
-    repository: europe-west1-docker.pkg.dev/infomineo/infominerva
-    pullPolicy: IfNotPresent
-    tag: backend
+    repository: europe-west1-docker.pkg.dev/infomineo/infominerva/backend
+    pullPolicy: Always
+    tag: 
   service:
     type: ClusterIP
     port: 8000
     targetPort: 8000
-  # resources: {}
-  # env: [] # We will now use envFrom for secrets
-  # envFrom:
-  #   - secretRef:
-  #       name: {{ include "my-app.fullname" . }}-backend-secrets
 
 frontend:
   name: frontend
   image:
-    repository: europe-west1-docker.pkg.dev/infomineo/infominerva
-    pullPolicy: IfNotPresent
-    tag: frontend
+    repository: europe-west1-docker.pkg.dev/infomineo/infominerva/frontend
+    pullPolicy: Always
+    tag: 
   service:
     type: ClusterIP
     port: 80
     targetPort: 3000
-  # resources: {}
-  # env: [] # We will now use envFrom for secrets
-  # envFrom:
-  #   - secretRef:
-  #       name: {{ include "my-app.fullname" . }}-frontend-secrets
 
 ingress:
   enabled: true
@@ -69,9 +59,9 @@ secrets:
   backend:
     nameSuffix: "backend-secrets"
     data:
-      DATABASE_URL: "postgresql://postgres:slimanos@db:5432/Infominerva"
+      DATABASE_URL: "postgresql://infomineo:slimano@127.0.0.1:5432/Infominerva"
       POSTGRES_USER: "infomineo"
-      POSTGRES_PASSWORD: "slimanos"
+      POSTGRES_PASSWORD: "slimano"
       POSTGRES_DB: "Infominerva"
 
   frontend:

@@ -9,19 +9,16 @@ on:
   #     - main
 
 env:
-  # --- TODO: Configure these GCP and GKE variables ---
-  GCP_PROJECT_ID: "infomineo" # Example, replace with your actual project ID
+  GCP_PROJECT_ID: "infomineo"
   GCP_ARTIFACT_REGISTRY_REGION: "europe-west1"
   GCP_ARTIFACT_REGISTRY_REPOSITORY: "infominerva"
   GKE_CLUSTER_NAME: "infominerva-cluster"
   GKE_CLUSTER_LOCATION: "europe-west1"
-
-  # --- TODO: Configure these application and Helm specific variables ---
   BACKEND_IMAGE_NAME: "backend"
   FRONTEND_IMAGE_NAME: "frontend"
 
   # --- Image tag will be the Git commit SHA for uniqueness ---
-  IMAGE_TAG: "${{ github.sha }}" # Using the full SHA for better uniqueness
+  IMAGE_TAG: "latest"
 
   # --- Define Dockerfile paths and context ---
   DOCKER_BUILD_CONTEXT: "./bcg-knowledge-search-tool"
@@ -36,7 +33,7 @@ jobs:
     environment: infominerva
     permissions:
       contents: 'read'
-      id-token: 'write' # Required for Workload Identity Federation if you switch to it
+      id-token: 'write'
 
     outputs: # Define outputs to pass to the deploy job
       backend_image_full_path: ${{ steps.image_paths.outputs.AR_BACKEND_IMAGE_FULL_PATH }}
@@ -52,9 +49,6 @@ jobs:
         uses: 'google-github-actions/auth@v2'
         with:
           credentials_json: '${{ secrets.GCP_SA_KEY }}'
-          # If you were using Workload Identity Federation, it would look like this:
-          # workload_identity_provider: 'projects/YOUR_PROJECT_NUMBER/locations/global/workloadIdentityPools/YOUR_POOL_ID/providers/YOUR_PROVIDER_ID'
-          # service_account: 'your-service-account-email@your-project-id.iam.gserviceaccount.com'
 
       - name: Set up Cloud SDK
         uses: 'google-github-actions/setup-gcloud@v2'
