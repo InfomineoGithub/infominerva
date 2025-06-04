@@ -22,11 +22,28 @@ terraform {
     kubernetes = {
       source = "hashicorp/kubernetes"
     }
+    google-beta = {
+      source  = "hashicorp/google-beta"
+    }
   }
   required_version = ">= 0.13"
 }
 
 data "google_client_config" "default" {}
+
+provider "google" {
+  credentials = file(var.credentials_path)
+
+  project     = var.project_id
+  region      = var.region
+  zone        = var.zone
+}
+
+provider "google-beta" {
+  credentials = file(var.credentials_path)
+  project     = var.project_id
+  user_project_override = false
+}
 
 provider "kubernetes" {
   host                   = module.gke.endpoint

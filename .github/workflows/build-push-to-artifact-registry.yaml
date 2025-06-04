@@ -1,0 +1,146 @@
+name: Build, Push to Artifact Registry, and Deploy to GKE
+
+on:
+  push:
+    branches:
+      - main
+  # pull_request: # Uncomment to run on Pull Requests (e.g., for linting/testing, without deploy)
+  #   branches:
+  #     - main
+
+env:
+  # --- TODO: Configure these GCP and GKE variables ---
+  GCP_PROJECT_ID: "infomineo"
+  GCP_ARTIFACT_REGISTRY_REGION: "europe-west1" # e.g., us-central1, europe-west1
+  GCP_ARTIFACT_REGISTRY_REPOSITORY: "infominerva" # The name of your Docker repository in Artifact Registry
+  GKE_CLUSTER_NAME: "infominerva-cluster"
+  GKE_CLUSTER_LOCATION: "europe-west1" # e.g., us-central1-a (for zonal) or us-central1 (for regional)
+
+  # --- TODO: Configure these application and Helm specific variables ---
+  BACKEND_IMAGE_NAME: "backend" # Name for your backend image in Artifact Registry
+  FRONTEND_IMAGE_NAME: "frontend" # Name for your frontend image in Artifact Registry
+  HELM_CHART_PATH: "./helm_chart" # Path to your Helm chart directory within the repository
+  HELM_RELEASE_NAME: "infominerva" # Name for your Helm release
+  HELM_NAMESPACE: "infominerva" # Kubernetes namespace for deployment (will be created if it doesn't exist)
+
+  # --- Image tag will be the Git commit SHA for uniqueness ---
+  IMAGE_TAG: ${{ github.sha }}
+
+jobs:
+  build-and-push-images:
+    name: Build and Push Docker Images
+    runs-on: ubuntu-latest
+    permissions:
+      contents: 'read'
+      id-token: 'write' # Required for Workload Identity Federation
+
+    outputs: # Define outputs to pass to the deploy job
+      backend_image_full_path: ${{ steps.image_paths.outputs.AR_BACKEND_IMAGE_FULL_PATH }}
+      frontend_image_full_path: ${{ steps.image_paths.outputs.AR_FRONTEND_IMAGE_FULL_PATH }}
+      image_tag: ${{ env.IMAGE_TAG }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # --- TODO: Configure Workload Identity Federation ---
+      # Replace with your WIF provider and service account details.
+      # See: https://github.com/google-github-actions/auth#setting-up-workload-identity-federation
+      # - name: Authenticate to Google Cloud (Workload Identity Federation)
+      #   id: auth
+      #   uses: 'google-github-actions/auth@v2'
+      #   with:
+      #     workload_identity_provider: 'projects/YOUR_GCP_PROJECT_NUMBER/locations/global/workloadIdentityPools/YOUR_POOL_ID/providers/YOUR_PROVIDER_ID' # e.g., projects/123456789/locations/global/workloadIdentityPools/my-pool/providers/github-provider
+      #     service_account: 'your-service-account-email@${{ env.GCP_PROJECT_ID }}.iam.gserviceaccount.com' # e.g., gha-runner@my-project.iam.gserviceaccount.com
+
+      # --- Alternative: Authenticate using Service Account Key JSON (less recommended) ---
+      # If using this, store your GCP_SA_KEY JSON as a GitHub Secret.
+      - name: Authenticate to Google Cloud (Service Account Key)
+        id: auth
+        uses: 'google-github-actions/auth@v2'
+        with:
+          credentials_json: '${{ secrets.GCP_SA_KEY }}'
+
+      - name: Set up Cloud SDK
+        uses: 'google-github-actions/setup-gcloud@v2'
+        with:
+          project_id: ${{ env.GCP_PROJECT_ID }}
+
+      - name: Configure Docker for Artifact Registry
+        run: gcloud auth configure-docker ${{ env.GCP_ARTIFACT_REGISTRY_REGION }}-docker.pkg.dev
+
+      - name: Define Full Image Paths
+        id: image_paths
+        run: |
+          echo "AR_BACKEND_IMAGE_FULL_PATH=${{ env.GCP_ARTIFACT_REGISTRY_REGION }}-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.GCP_ARTIFACT_REGISTRY_REPOSITORY }}/${{ env.BACKEND_IMAGE_NAME }}:${{ env.IMAGE_TAG }}" >> $GITHUB_OUTPUT
+          echo "AR_FRONTEND_IMAGE_FULL_PATH=${{ env.GCP_ARTIFACT_REGISTRY_REGION }}-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.GCP_ARTIFACT_REGISTRY_REPOSITORY }}/${{ env.FRONTEND_IMAGE_NAME }}:${{ env.IMAGE_TAG }}" >> $GITHUB_OUTPUT
+
+      - name: Build, Tag, and Push Backend Image
+        run: |
+          echo "Building backend image: ${{ steps.image_paths.outputs.AR_BACKEND_IMAGE_FULL_PATH }}"
+          docker build --target backend -t ${{ steps.image_paths.outputs.AR_BACKEND_IMAGE_FULL_PATH }} .
+          echo "Pushing backend image..."
+          docker push ${{ steps.image_paths.outputs.AR_BACKEND_IMAGE_FULL_PATH }}
+
+      - name: Build, Tag, and Push Frontend Image
+        run: |
+          echo "Building frontend image: ${{ steps.image_paths.outputs.AR_FRONTEND_IMAGE_FULL_PATH }}"
+          docker build --target frontend -t ${{ steps.image_paths.outputs.AR_FRONTEND_IMAGE_FULL_PATH }} .
+          echo "Pushing frontend image..."
+          docker push ${{ steps.image_paths.outputs.AR_FRONTEND_IMAGE_FULL_PATH }}
+
+  deploy-to-gke:
+    name: Deploy to GKE
+    runs-on: ubuntu-latest
+    needs: build-and-push-images # This job depends on the successful completion of the previous one
+    permissions:
+      contents: 'read'
+      id-token: 'write' # Required for Workload Identity Federation
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # --- TODO: Configure Workload Identity Federation (same as above) ---
+      - name: Authenticate to Google Cloud (Workload Identity Federation)
+        id: auth
+        uses: 'google-github-actions/auth@v2'
+        with:
+          workload_identity_provider: 'projects/YOUR_GCP_PROJECT_NUMBER/locations/global/workloadIdentityPools/YOUR_POOL_ID/providers/YOUR_PROVIDER_ID'
+          service_account: 'your-service-account-email@${{ env.GCP_PROJECT_ID }}.iam.gserviceaccount.com'
+
+      # --- Alternative: Authenticate using Service Account Key JSON (less recommended) ---
+      # - name: Authenticate to Google Cloud (Service Account Key)
+      #   id: auth
+      #   uses: 'google-github-actions/auth@v2'
+      #   with:
+      #     credentials_json: '${{ secrets.GCP_SA_KEY }}'
+
+      - name: Set up Cloud SDK
+        uses: 'google-github-actions/setup-gcloud@v2'
+        with:
+          project_id: ${{ env.GCP_PROJECT_ID }}
+
+      - name: Get GKE cluster credentials
+        # Use --zone for zonal clusters, --region for regional clusters
+        run: gcloud container clusters get-credentials ${{ env.GKE_CLUSTER_NAME }} --location ${{ env.GKE_CLUSTER_LOCATION }}
+
+      - name: Set up Helm
+        uses: azure/setup-helm@v4 # A popular action for setting up Helm
+        with:
+          version: 'latest' # Or specify a particular Helm version, e.g., 'v3.10.0'
+
+      - name: Deploy/Upgrade Helm Chart
+        run: |
+          helm upgrade --install ${{ env.HELM_RELEASE_NAME }} ${{ env.HELM_CHART_PATH }} \
+            --namespace ${{ env.HELM_NAMESPACE }} \
+            --create-namespace \
+            --set backend.image.repository=${{ env.GCP_ARTIFACT_REGISTRY_REGION }}-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.GCP_ARTIFACT_REGISTRY_REPOSITORY }}/${{ env.BACKEND_IMAGE_NAME }} \
+            --set backend.image.tag=${{ needs.build-and-push-images.outputs.image_tag }} \
+            --set frontend.image.repository=${{ env.GCP_ARTIFACT_REGISTRY_REGION }}-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.GCP_ARTIFACT_REGISTRY_REPOSITORY }}/${{ env.FRONTEND_IMAGE_NAME }} \
+            --set frontend.image.tag=${{ needs.build-and-push-images.outputs.image_tag }} \
+            --wait # Optional: waits for all resources to be in a ready state
+            # Add any other --set flags for values you need to override in your Helm chart
+            # For example:
+            # --set ingress.host=your-app.example.com
+            # --set secrets.backend.data.POSTGRES_PASSWORD=${{ secrets.DB_PASSWORD }} # If managing DB password via GitHub secrets

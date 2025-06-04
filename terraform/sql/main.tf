@@ -8,7 +8,8 @@ resource "google_sql_database_instance" "default-db" {
   deletion_protection = false
 
   settings {
-    tier = var.tier
+    tier = var.db_tier
+    edition = var.db_edition
 
     ip_configuration {
       ipv4_enabled    = false # Disable public IP

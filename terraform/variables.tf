@@ -1,3 +1,9 @@
+variable "credentials_path" {
+  description = "The path to the GCP credentials file."
+  type        = string
+  default     = "./infomineo-b952e1ca199d.json"
+}
+
 variable "project_id" {
   description = "The project ID for the GCP resources."
   type        = string
@@ -8,6 +14,12 @@ variable "region" {
   description = "The region where the GCP resources will be located."
   type        = string
   default     = "us-central1"
+}
+
+variable "zone" {
+  description = "The GCP zone where the resources will be located."
+  type        = string
+  default     = "us-central1-a"
 }
 
 variable "network_name" {
@@ -82,6 +94,12 @@ variable "sql_instance_tier" {
   default     = "db-f1-micro"
 }
 
+variable "sql_instance_edition" {
+  description = "The edition for the SQL instance."
+  type        = string
+  default     = "STANDARD"
+}
+
 variable "cluster_name" {
   description = "The name of the GKE cluster."
   type        = string
@@ -136,4 +154,29 @@ variable "db_root_password" {
   description = "The root password for the SQL instance."
   type        = string
   sensitive   = true
+}
+
+variable "oauth_client_id" {
+  type = string
+  description = "OAuth client ID"
+}
+
+variable "oauth_client_secret" {
+  type = string
+  description = "OAuth client secret. For this codelab, you can pass in this secret through the environment variable TF_VAR_oauth_client_secret. In a real app, you should use a secret manager service."
+  sensitive = true
+}
+
+
+# Artifact Registry Variables
+variable "artifact_registry_repository_name" {
+  description = "The desired name for the Artifact Registry Docker repository (e.g., 'my-docker-repo')."
+  type        = string
+  # No default, as this should be explicitly provided.
+}
+
+variable "artifact_registry_repository_description" {
+  description = "A description for the Artifact Registry repository."
+  type        = string
+  default     = "Docker repository for application images"
 }

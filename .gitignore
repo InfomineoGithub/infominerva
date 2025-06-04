@@ -15,3 +15,6 @@ node_modules
 .idea
 .vscode
 .history
+
+# service accounts
+infomineo-b952e1ca199d.json

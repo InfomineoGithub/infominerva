@@ -7,9 +7,9 @@ replicaCount: 1
 backend:
   name: backend
   image:
-    repository: your-registry/your-backend-app # <-- TODO: Change this
+    repository: europe-west1-docker.pkg.dev/infomineo/infominerva
     pullPolicy: IfNotPresent
-    tag: "v1.0.0" # <-- TODO: Change this or use .Chart.AppVersion
+    tag: backend
   service:
     type: ClusterIP
     port: 8000
@@ -23,9 +23,9 @@ backend:
 frontend:
   name: frontend
   image:
-    repository: your-registry/your-frontend-app # <-- TODO: Change this
+    repository: europe-west1-docker.pkg.dev/infomineo/infominerva
     pullPolicy: IfNotPresent
-    tag: "v1.0.0" # <-- TODO: Change this or use .Chart.AppVersion
+    tag: frontend
   service:
     type: ClusterIP
     port: 80
@@ -41,7 +41,7 @@ ingress:
   className: ""
   annotations: {}
   hosts:
-    - host: chart-example.local # <-- TODO: Change this
+    - host: infominerva.infomineo.com # <-- TODO: Change this
       paths:
         - path: /
           pathType: ImplementationSpecific

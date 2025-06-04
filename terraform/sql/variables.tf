@@ -24,10 +24,16 @@ variable "region" {
   type        = string
 }
 
-variable "tier" {
+variable "db_tier" {
   description = "The tier (machine type) of the database instance"
   type        = string
   default     = "db-f1-micro"
+}
+
+variable "db_edition" {
+  description = "The edition of the database"
+  type        = string
+  default     = "STANDARD"
 }
 
 variable "private_network" {

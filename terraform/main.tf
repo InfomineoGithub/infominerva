@@ -1,3 +1,8 @@
+module "services" {
+  source = "./services"
+  project_id = var.project_id
+}
+
 module "network" {
   source                      = "./network"
   project_id                  = var.project_id
@@ -11,6 +16,8 @@ module "network" {
   pods_ip_cidr_range          = var.pods_ip_cidr_range
   svc_range_name              = var.svc_range_name
   svc_ip_cidr_range           = var.svc_ip_cidr_range
+
+  depends_on = [module.services]
 }
 
 module "sql-instance" {
@@ -20,7 +27,8 @@ module "sql-instance" {
   db_name           = var.db_name
   database_version  = var.database_version
   region            = var.region
-  tier              = var.sql_instance_tier
+  db_tier           = var.sql_instance_tier
+  db_edition        = var.sql_instance_edition
   private_network   = module.network.vpc_network_name
   db_user_name      = var.db_user_name
   db_user_password  = var.db_user_password
@@ -47,11 +55,19 @@ module "gke" {
   depends_on = [module.network]
 }
 
-module "odoo-deployment" {
-  source = "./deployment"
-  k8s_namespace = var.k8s_namespace
-  depends_on = [
-    module.gke,
-    module.sql-instance
-   ]
+module "firebase" {
+  source                    = "./firebase"
+  project_id                = var.project_id
+  oauth_client_id           = var.oauth_client_id
+  oauth_client_secret       = var.oauth_client_secret
+
+  depends_on = [module.services]
+}
+
+module "artifact_registry" {
+  source                            = "./artifact_registry"
+  project_id                        = var.project_id
+  region                            = var.region
+  repository_name                   = var.artifact_registry_repository_name
+  repository_description            = var.artifact_registry_repository_description
 }
