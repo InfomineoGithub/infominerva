@@ -3,34 +3,41 @@ name: Build, Push to Artifact Registry, and Deploy to GKE
 on:
   push:
     branches:
-      - main
+      - main # Or your primary development branch, e.g., master
   # pull_request: # Uncomment to run on Pull Requests (e.g., for linting/testing, without deploy)
   #   branches:
   #     - main
 
 env:
   # --- TODO: Configure these GCP and GKE variables ---
-  GCP_PROJECT_ID: "infomineo"
-  GCP_ARTIFACT_REGISTRY_REGION: "europe-west1" # e.g., us-central1, europe-west1
-  GCP_ARTIFACT_REGISTRY_REPOSITORY: "infominerva" # The name of your Docker repository in Artifact Registry
+  GCP_PROJECT_ID: "infomineo" # Example, replace with your actual project ID
+  GCP_ARTIFACT_REGISTRY_REGION: "europe-west1"
+  GCP_ARTIFACT_REGISTRY_REPOSITORY: "infominerva"
   GKE_CLUSTER_NAME: "infominerva-cluster"
-  GKE_CLUSTER_LOCATION: "europe-west1" # e.g., us-central1-a (for zonal) or us-central1 (for regional)
+  GKE_CLUSTER_LOCATION: "europe-west1"
 
   # --- TODO: Configure these application and Helm specific variables ---
-  BACKEND_IMAGE_NAME: "backend" # Name for your backend image in Artifact Registry
-  FRONTEND_IMAGE_NAME: "frontend" # Name for your frontend image in Artifact Registry
-  HELM_CHART_PATH: "./helm_chart" # Path to your Helm chart directory within the repository
-  HELM_RELEASE_NAME: "infominerva" # Name for your Helm release
-  HELM_NAMESPACE: "infominerva" # Kubernetes namespace for deployment (will be created if it doesn't exist)
+  BACKEND_IMAGE_NAME: "backend"
+  FRONTEND_IMAGE_NAME: "frontend"
+  HELM_CHART_PATH: "./helm_chart"
+  HELM_RELEASE_NAME: "infominerva"
+  HELM_NAMESPACE: "infominerva"
 
   # --- Image tag will be the Git commit SHA for uniqueness ---
   IMAGE_TAG: ${{ github.sha }}
+
+  # --- Define Dockerfile paths and context ---
+  DOCKER_BUILD_CONTEXT: "./bcg-knowledge-search-tool"
+  BACKEND_DOCKERFILE_PATH: "./bcg-knowledge-search-tool/backend.Dockerfile"
+  FRONTEND_DOCKERFILE_PATH: "./bcg-knowledge-search-tool/frontend.Dockerfile"
+
 
 jobs:
   build-and-push-images:
     name: Build and Push Docker Images
     runs-on: ubuntu-latest
-    environment: infominerva
+    # If using environment-specific secrets for GCP_SA_KEY, uncomment and set your environment name
+    # environment: infominerva
     permissions:
       contents: 'read'
       id-token: 'write' # Required for Workload Identity Federation
@@ -44,23 +51,22 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # --- TODO: Configure Workload Identity Federation ---
-      # Replace with your WIF provider and service account details.
-      # See: https://github.com/google-github-actions/auth#setting-up-workload-identity-federation
+      # --- Choose ONE authentication method ---
+      # Method 1: Workload Identity Federation (Recommended)
+      # Ensure WIF is configured in GCP and GitHub Actions.
       # - name: Authenticate to Google Cloud (Workload Identity Federation)
       #   id: auth
       #   uses: 'google-github-actions/auth@v2'
       #   with:
-      #     workload_identity_provider: 'projects/YOUR_GCP_PROJECT_NUMBER/locations/global/workloadIdentityPools/YOUR_POOL_ID/providers/YOUR_PROVIDER_ID' # e.g., projects/123456789/locations/global/workloadIdentityPools/my-pool/providers/github-provider
-      #     service_account: 'your-service-account-email@${{ env.GCP_PROJECT_ID }}.iam.gserviceaccount.com' # e.g., gha-runner@my-project.iam.gserviceaccount.com
+      #     workload_identity_provider: 'projects/YOUR_GCP_PROJECT_NUMBER/locations/global/workloadIdentityPools/YOUR_POOL_ID/providers/YOUR_PROVIDER_ID'
+      #     service_account: 'your-service-account-email@${{ env.GCP_PROJECT_ID }}.iam.gserviceaccount.com'
 
-      # --- Alternative: Authenticate using Service Account Key JSON (less recommended) ---
-      # If using this, store your GCP_SA_KEY JSON as a GitHub Secret.
+      # Method 2: Service Account Key JSON (Ensure GCP_SA_KEY secret is set in GitHub)
       - name: Authenticate to Google Cloud (Service Account Key)
         id: auth
         uses: 'google-github-actions/auth@v2'
         with:
-          credentials_json: '${{ secrets.GCP_SA_KEY }}'
+          credentials_json: '${{ secrets.GCP_SA_KEY }}' # Ensure this secret is defined in GitHub repository/environment settings
 
       - name: Set up Cloud SDK
         uses: 'google-github-actions/setup-gcloud@v2'
@@ -68,7 +74,7 @@ jobs:
           project_id: ${{ env.GCP_PROJECT_ID }}
 
       - name: Configure Docker for Artifact Registry
-        run: gcloud auth configure-docker ${{ env.GCP_ARTIFACT_REGISTRY_REGION }}-docker.pkg.dev
+        run: gcloud auth configure-docker ${{ env.GCP_ARTIFACT_REGISTRY_REGION }}-docker.pkg.dev --quiet
 
       - name: Define Full Image Paths
         id: image_paths
@@ -79,13 +85,15 @@ jobs:
       - name: Build, Tag, and Push Backend Image
         run: |
           echo "Building backend image: ${{ steps.image_paths.outputs.AR_BACKEND_IMAGE_FULL_PATH }}"
-          docker build --target backend -t ${{ steps.image_paths.outputs.AR_BACKEND_IMAGE_FULL_PATH }} .
+          echo "Using Dockerfile: ${{ env.BACKEND_DOCKERFILE_PATH }} with context: ${{ env.DOCKER_BUILD_CONTEXT }}"
+          docker build --target backend -f ${{ env.BACKEND_DOCKERFILE_PATH }} -t ${{ steps.image_paths.outputs.AR_BACKEND_IMAGE_FULL_PATH }} ${{ env.DOCKER_BUILD_CONTEXT }}
           echo "Pushing backend image..."
           docker push ${{ steps.image_paths.outputs.AR_BACKEND_IMAGE_FULL_PATH }}
 
       - name: Build, Tag, and Push Frontend Image
         run: |
           echo "Building frontend image: ${{ steps.image_paths.outputs.AR_FRONTEND_IMAGE_FULL_PATH }}"
-          docker build --target frontend -t ${{ steps.image_paths.outputs.AR_FRONTEND_IMAGE_FULL_PATH }} .
+          echo "Using Dockerfile: ${{ env.FRONTEND_DOCKERFILE_PATH }} with context: ${{ env.DOCKER_BUILD_CONTEXT }}"
+          docker build --target frontend -f ${{ env.FRONTEND_DOCKERFILE_PATH }} -t ${{ steps.image_paths.outputs.AR_FRONTEND_IMAGE_FULL_PATH }} ${{ env.DOCKER_BUILD_CONTEXT }}
           echo "Pushing frontend image..."
           docker push ${{ steps.image_paths.outputs.AR_FRONTEND_IMAGE_FULL_PATH }}
