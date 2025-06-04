@@ -35,18 +35,18 @@ spec:
           image: "{{ .Values.frontend.image.repository }}:{{ .Values.frontend.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.frontend.image.pullPolicy }}
           command: ["npm"]
-          args: ["start"] # Note: `npm start` is for development. Production React apps are usually built and served statically.
+          args: ["start"]
           ports:
             - name: http
               containerPort: {{ .Values.frontend.service.targetPort }}
               protocol: TCP
           resources:
             requests:
-              cpu: "100m"
-              memory: "250Mi"
+              cpu: "1000m"
+              memory: "1000Mi"
             limits:
-              cpu: "100m"
-              memory: "250Mi"
+              cpu: "1000m"
+              memory: "1000Mi"
           {{- if .Values.secrets.create }}
           envFrom:
             - secretRef:

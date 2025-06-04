@@ -11,8 +11,8 @@ backend:
     pullPolicy: Always
     tag: latest
   service:
-    type: ClusterIP
-    port: 8000
+    type: LoadBalancer
+    port: 80
     targetPort: 8000
 
 frontend:
@@ -22,7 +22,7 @@ frontend:
     pullPolicy: Always
     tag: latest
   service:
-    type: ClusterIP
+    type: LoadBalancer
     port: 80
     targetPort: 3000
 
@@ -67,7 +67,7 @@ secrets:
   frontend:
     nameSuffix: "frontend-secrets"
     data:
-      REACT_APP_URL: "http://34.44.235.46/:8000/"
+      REACT_APP_URL: "http://34.44.235.46/:80/"
 
 serviceAccount:
   create: false
