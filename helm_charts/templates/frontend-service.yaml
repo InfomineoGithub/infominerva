@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "infominerva.fullname" . }}-frontend
+  labels:
+    {{- include "infominerva.labels" . | nindent 4 }}
+    app.kubernetes.io/component: frontend
+spec:
+  type: {{ .Values.frontend.service.type }}
+  ports:
+    - port: {{ .Values.frontend.service.port }}
+      targetPort: http # Refers to the 'name' of the port in the frontend Deployment
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "infominerva.selectorLabels" . | nindent 4 }}
+    app.kubernetes.io/component: frontend

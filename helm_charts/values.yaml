@@ -1,0 +1,85 @@
+# Default values for my-app chart.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+backend:
+  name: backend
+  image:
+    repository: your-registry/your-backend-app # <-- TODO: Change this
+    pullPolicy: IfNotPresent
+    tag: "v1.0.0" # <-- TODO: Change this or use .Chart.AppVersion
+  service:
+    type: ClusterIP
+    port: 8000
+    targetPort: 8000
+  # resources: {}
+  # env: [] # We will now use envFrom for secrets
+  # envFrom:
+  #   - secretRef:
+  #       name: {{ include "my-app.fullname" . }}-backend-secrets
+
+frontend:
+  name: frontend
+  image:
+    repository: your-registry/your-frontend-app # <-- TODO: Change this
+    pullPolicy: IfNotPresent
+    tag: "v1.0.0" # <-- TODO: Change this or use .Chart.AppVersion
+  service:
+    type: ClusterIP
+    port: 80
+    targetPort: 3000
+  # resources: {}
+  # env: [] # We will now use envFrom for secrets
+  # envFrom:
+  #   - secretRef:
+  #       name: {{ include "my-app.fullname" . }}-frontend-secrets
+
+ingress:
+  enabled: true
+  className: ""
+  annotations: {}
+  hosts:
+    - host: chart-example.local # <-- TODO: Change this
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+          service:
+            name: frontend
+            port: 80
+        - path: /api
+          pathType: ImplementationSpecific
+          service:
+            name: backend
+            port: 8000
+  tls: []
+
+imagePullSecrets: []
+
+nameOverride: ""
+fullnameOverride: ""
+
+# New section for managing secrets
+# For production, these sensitive values should ideally be managed outside of version control
+# (e.g., using Helm --set, separate values files, or a secrets management tool like Vault).
+secrets:
+  create: true # Set to true to create the Kubernetes Secret resources
+
+  backend:
+    nameSuffix: "backend-secrets"
+    data:
+      DATABASE_URL: "postgresql://postgres:slimanos@db:5432/Infominerva"
+      POSTGRES_USER: "infomineo"
+      POSTGRES_PASSWORD: "slimanos"
+      POSTGRES_DB: "Infominerva"
+
+  frontend:
+    nameSuffix: "frontend-secrets"
+    data:
+      REACT_APP_URL: "http://34.44.235.46/:8000/"
+
+serviceAccount:
+  create: false
+  annotations: {}
+  name: ""

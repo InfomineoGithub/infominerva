@@ -1,0 +1,16 @@
+apiVersion: v2
+name: infominerva
+description: A Helm chart for deploying a Python backend and a Node.js frontend application
+
+# A chart can be either an 'application' or a 'library' chart.
+# Application charts are installable releases. Library charts provide useful utilities
+# or functions for the chart developer. They cannot be installed.
+type: application
+
+# This is the chart version. This version number should be incremented each time you make changes
+# to the chart and its templates, including the app version.
+version: 0.1.0
+
+# This is the version number of the application being deployed. This version number should be
+# incremented each time you make changes to the application.
+appVersion: "1.0.0"
