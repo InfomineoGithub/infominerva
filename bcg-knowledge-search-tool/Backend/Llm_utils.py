@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 import re
 
 # Initialize OpenAI API 
-openai.api_key = "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"
+openai.api_key = "secret"
 
 
 VALID_PA_CLASSIFICATIONS = [
